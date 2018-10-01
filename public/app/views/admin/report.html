@@ -1,0 +1,20 @@
+<div class="text-center">
+    <h1> Report Requests </h1>
+</div>
+
+<div style="padding:15px;">
+    <div class="panel panel-default" ng-repeat="element in report.reports">
+        <div class="panel-heading">
+            <a href="/question/{{element.id }}">
+                <p class="question"> <b> {{ element.question }} ? </b> </p>
+            </a>
+            <a href="/tag/{{element.tag}}">
+                <span class="label label-success author">{{ element.tag }}</span>
+            </a>
+        </div>
+        <div class="panel-footer" style="display: block;">
+            <h6 class="author">Asked by : <a href="/users/{{ element.author }}">@{{ element.author }}</a>   &nbsp; <button type="button" class="btn btn-danger" ng-click="report.deleteQuestion(element.id);">Delete Question</button> </h6>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,70 @@
+<div>
+    <br>
+    <div class="text-center">
+        <h1>Ask Question</h1>
+    </div>
+</div>
+<br>
+<br>
+<div>
+    <form ng-submit="question.addQuestion(questionData);" name="questionForm">
+        <label>Ask question :</label>
+        <input type="text" class="form-control" name="newquestion" ng-model="questionData.newQuestion" required>
+        <br>
+        <div class="form-group">
+            <label> Select Tag :</label>
+            <select ng-model="questionData.tag" style="background-color: transparent;padding: 5px;margin-left: 5px;" required>
+                <option ng-repeat="tag in question.tags" value="{{ tag.tag }}">
+                    {{tag.tag}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Want to be anonymous?</label>
+            <select ng-model="questionData.anonymous" style="background-color: transparent;padding: 5px;margin-left: 5px;" required>
+                <option value="yes">
+                    Yes
+                </option>
+                <option value="no">
+                    No
+                </option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit"> Ask Question </button>
+    </form>
+    <br>
+
+    <div class="row show-hide-message">
+        <div class="alert alert-success" ng-show="question.successMsg">
+            <strong> Success! </strong> {{ question.successMsg  }}
+        </div>
+    </div>
+
+    <div class="row show-hide-message">
+        <div class="alert alert-danger" ng-show="question.errorMsg">
+            <strong> Oops! </strong> {{ question.errorMsg  }}
+        </div>
+    </div>
+
+
+    <div class="row card" ng-show="!questionForm.$pristine">
+        <div ng-repeat="question in question.questions | filter : questionData.newQuestion | limitTo : question.limit" style="border: 2px solid white;margin-top: 10px;border-radius: 10px; ">
+            <div style="padding: 15px;">
+                <strong>
+                    <a href="/question/{{question._id }}">
+                        <p style="color: white;" class="question"> <b> {{ question.question }} ? </b> </p>
+                    </a>
+                    <a href="/tag/{{question.tag}}">
+                        <span class="label label-success author">{{ question.tag }}</span>
+                    </a>
+                </strong>
+            </div>
+            <div style="color: white;display: block;padding: 15px;">
+                <h6 class="author">Asked by : <a href="/users/{{ question.author }}"> @{{ question.author }}</a>   &nbsp;<button type="button" class="btn report-button" ng-click="">Report Question</button>  &nbsp; <button class="btn transparent-button-white">{{ question.totalviews }} Views</button>  &nbsp; <button class="btn transparent-button-white">{{ main.totalanswers[$index] }} Answers</button>  &nbsp; <button class="btn transparent-button-white">{{ question.totallikes }} Likes</button></h6>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

@@ -1,0 +1,166 @@
+<br>
+<!--
+<div ng-show="!usersprofile.errorMsg">
+    <div class="text-center">
+        <h1>
+            {{ usersprofile.name }} Profile page
+        </h1>
+    </div>
+    <p> Username  : {{ usersprofile.username }}</p>
+    <p> Email  : {{ usersprofile.email }}</p>
+    <p> Role : {{ usersprofile.permission }}</p>
+
+</div>
+<div class="row show-hide-message">
+    <div class="alert alert-danger" ng-show="usersprofile.errorMsg">
+        <strong> Oops! </strong> {{ usersprofile.errorMsg  }}
+    </div>
+</div>
+
+-->
+
+
+<style>
+    .side-menu{
+        padding-bottom: 10px;
+    }
+    .side-menu img{
+        height: 35px;
+        width: 35px;
+    }
+    .side-menu p{
+        font-size: 17px;
+        margin-top: 12px;
+    }
+
+    .name {
+        margin-top: 27px;
+        font-size: 30px;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-1">
+
+    </div>
+    <div class="col-sm-2">
+        <img style="color: white;margin-top: 6px" src="/assets/img/profilepic.svg"></img>
+    </div>
+    <div class="col-sm-9">
+        <h1>Super Admin</h1>
+        <br>
+        <span class="label label-success">Beginner</span>&nbsp; &nbsp;&nbsp;
+    </div>
+</div>
+
+<div style="padding-top: 10px;" class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-3" style="padding-top: 40px;">
+        <div class="row side-menu">
+            <div class="col-sm-3">
+                <img src="/assets/img/answer.svg">
+            </div>
+            <div class="col-sm-7">
+                <a href="/profile">
+                    <p>Answers</p>
+                </a>
+            </div>
+        </div>
+        <div class="row side-menu">
+            <div class="col-sm-3">
+                <img src="/assets/img/question.svg">
+            </div>
+            <div class="col-sm-7">
+                <a href="/profile">
+                    <p>Questions</p>
+                </a>
+
+            </div>
+        </div>
+        <div class="row side-menu">
+            <div class="col-sm-3">
+                <img src="/assets/img/activity.svg">
+            </div>
+            <div class="col-sm-7">
+                <a href="/profile">
+                    <p>Notifications</p>
+                </a>
+            </div>
+        </div>
+        <div class="row side-menu">
+            <div class="col-sm-3">
+                <img src="/assets/img/followers.svg">
+            </div>
+            <div class="col-sm-7">
+                <a href="/profile">
+                    <p>Followers</p>
+                </a>
+
+            </div>
+        </div>
+        <div class="row side-menu">
+            <div class="col-sm-3">
+                <img src="/assets/img/following.svg">
+            </div>
+            <div class="col-sm-7">
+                <a href="/profile">
+                    <p>Following</p>
+                </a>
+
+            </div>
+        </div>
+        <div class="row side-menu">
+            <div class="col-sm-3">
+                <img src="/assets/img/topic.svg">
+            </div>
+            <div class="col-sm-7">
+                <a href="/profile">
+                    <p>Topics</p>
+                </a>
+
+            </div>
+        </div>
+        <div class="row side-menu">
+            <div class="col-sm-3">
+                <img src="/assets/img/saveanswer.svg">
+            </div>
+            <div class="col-sm-7">
+                <a href="/profile">
+                    <p>Saved Answers</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+
+
+        <br>
+        <div style="border: 2px solid white;margin-top: 5px;border-radius: 10px;">
+            <div style="padding: 15px;" ng-repeat="answer in saved.savedanswers">
+
+                <div style="color: white;padding-left: 15px;">
+                    <b> {{ answer.question }}? </b>
+                </div>
+                <div class="panel-body">
+                    <div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h6 class="author">Answered by : <a href="/users/{{ answer.author }}">@{{ answer.author }}</a></h6>
+                            </div>
+                            <div class="panel-body">
+                                {{ answer.answer }}
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

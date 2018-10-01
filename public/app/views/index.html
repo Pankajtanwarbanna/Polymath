@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/img/logo/logo.png"/>
+
+    <title>Polymath - A Know Everything QA Platform!</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="assets/css/demo.css"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+    <!-- App config -->
+    <script src="app/app.js"></script>
+    <script src="app/routes.js"></script>
+
+    <!-- Angular Controller files -->
+    <script src="app/controllers/userCtrl.js"></script>
+    <script src="app/controllers/mainCtrl.js"></script>
+    <script src="app/controllers/emailCtrl.js"></script>
+    <script src="app/controllers/managementCtrl.js"></script>
+    <script src="app/controllers/questionCtrl.js"></script>
+
+    <!-- Angular Services -->
+    <script src="app/services/userServices.js"></script>
+    <script src="app/services/authServices.js"></script>
+
+    <script type="text/javascript" src="assets/js/modernizr.custom.86080.js"></script>
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body ng-app="userApp" ng-controller="mainCtrl as main">
+
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <div class="row cb-slideshow-text-container">
+            <div class="tm-content">
+
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand prata-font" href="/">POLYMATH 404</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/services" class="prata-font" ng-show="!main.isLoggedIn"> SERVICES </a></li>
+                                <li><a href="/about" class="prata-font" ng-show="!main.isLoggedIn"> ABOUT </a></li>
+                                <li><a href="/contact" class="prata-font" ng-show="!main.isLoggedIn"> CONTACT US </a></li>
+                                <!--
+                                <li><a href="/kickstart" class="prata-font" ng-show="main.isLoggedIn">KICKSTART </a></li>
+                                <li><a href="/guide" class="prata-font" ng-show="main.isLoggedIn">PLACEMENTS </a></li>
+                                -->
+                                <li><a href="/management" class="prata-font" ng-show="main.isLoggedIn && main.authorized">MANAGEMENT </a></li>
+                                <li><a href="/register" class="prata-font" ng-show="!main.isLoggedIn"> JOIN US </a></li>
+                                <li><a href="/users/{{main.username}}" class="prata-font" ng-show="main.isLoggedIn"> HELLO {{main.name }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="ng-view"></div>
+
+                <div class="row" ng-show="main.home && !main.isLoggedIn">
+                    <div class="col-sm-6 landing-text">
+                        <header class="mb-5"><h1>Join a smart community</h1></header>
+                        <br>
+                        <p class="mb-5"> We keep all information about your fields of interest at one place. A platform to ask questions, give answers ans share opinions.</p>
+                    </div>
+                    <div class="col-sm-6" style="margin-top: 100px;padding-left: auto;">
+                        <img src="assets/img/landing.png" style="width: 500px;height: 350px;">
+                    </div>
+
+
+                    <div class="text-center footer-link">
+                        <p style="font-size: 18px;" class="text-center">Copyright © 2018 Polymath</p>
+                    </div>
+
+                </div>
+
+                <div ng-show="main.home && main.isLoggedIn">
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-3 card" style="padding-top: 30px;">
+                            <strong>
+                                <i class="fa fa-plus"></i>&nbsp
+                                <a style="color: white" href="/askquestion">
+                                    Ask Question
+                                </a>
+                            </strong>
+                            <br>
+                            <br>
+                            <strong>
+                                <i class="fa fa-users"></i>&nbsp
+                                <a style="color: white" href="/users">
+                                    Users
+                                </a>
+                            </strong>
+                            <br>
+                            <br>
+                            <strong>
+                                <i class="fa fa-tags"></i>&nbsp
+                                <a style="color: white" href="/tags">
+                                    Tag
+                                </a>
+                            </strong>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row card">
+                                <strong>
+                                    <div style="color: white;" class="text-center">
+                                        All Questions
+                                    </div>
+                                </strong>
+                            </div>
+                            <div class="row card">
+                                <div ng-repeat="question in main.questions" style="border: 2px solid white;margin-top: 10px;border-radius: 10px;">
+                                    <div style="padding: 15px;">
+                                        <strong>
+                                            <a href="/question/{{question._id }}">
+                                                <p style="color: white;" class="question"> <b> {{ question.question }} ? </b> </p>
+                                            </a>
+                                            <a href="/tag/{{question.tag}}">
+                                                <span class="label label-success author">{{ question.tag }}</span>
+                                            </a>
+                                        </strong>
+                                    </div>
+                                    <div style="color: white;display: block;padding: 15px;">
+                                        <h6 class="author">Asked by : <a style="color: white;" href="/users/{{ question.author }}"> @{{ question.author }}</a>   &nbsp;<button ng-show="!main.admin" type="button" class="report-button" ng-click="main.report(question);">Report Question</button>  &nbsp; <button class="transparent-button-white">{{ question.totalviews }} Views</button>  &nbsp; <button class="transparent-button-white">{{ main.totalanswers[$index] }} Answers</button>  &nbsp; <button class="transparent-button-white">{{ question.totallikes }} Likes</button></h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+    <!-- Javascript files Background particles -->
+    <script type="text/javascript" src="assets/js/particles.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+</html>

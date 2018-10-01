@@ -1,0 +1,14 @@
+<br>
+<div class="text-center">
+    <h1>
+        Top Users
+    </h1>
+</div>
+<br>
+<div>
+    <div ng-repeat="user in users.users" style="display: inline;border: 2px solid white;padding: 20px;margin-left: 10px;" class="text-center">
+        <a href="/users/{{user.username}}">
+            <button type="button" class="btn transparent-button-white" style="padding:30px;margin-left: 30px;font-size:30px;"> {{ user.username }}</button>
+        </a>
+    </div>
+</div>

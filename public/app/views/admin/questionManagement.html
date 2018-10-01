@@ -1,0 +1,27 @@
+<br>
+<br>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Questions management</strong>
+    </div>
+
+    <div style="padding:15px;">
+        <div class="panel panel-default" ng-repeat="question in questionManagement.questions">
+            <div class="panel-heading">
+                <a href="/question/{{question._id }}">
+                    <p class="question"> <b> {{ question.question }} ? </b> </p>
+                </a>
+                <a href="/tag/{{question.tag}}">
+                    <span class="label label-success author">{{ question.tag }}</span>
+                </a>
+            </div>
+            <div class="panel-footer" style="display: block;">
+                <h6 class="author">Asked by : <a href="/users/{{ question.author }}">@{{ question.author }}</a>   &nbsp; <button type="button" class="btn btn-danger" ng-click="questionManagement.deleteQuestion(question._id);">Delete Question</button> </h6>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

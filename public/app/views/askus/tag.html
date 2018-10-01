@@ -1,0 +1,29 @@
+<br>
+<div class="row show-hide-message">
+    <div class="alert alert-danger" ng-show="tag.errorMsg">
+        <strong> Oops! </strong> {{ tag.errorMsg  }}
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{ tag.tagname }}
+    </div>
+    <div style="padding:15px;">
+        <div class="panel panel-default" ng-repeat="question in tag.questions">
+            <div class="panel-heading">
+                <a href="/question/{{question._id }}">
+                    <p class="question"> <b> {{ question.question }} ? </b> </p>
+                </a>
+                <a href="/tag/{{question.tag}}">
+                    <span class="label label-success author">{{ question.tag }}</span>
+                </a>
+            </div>
+            <div class="panel-footer">
+                <h6 class="author">Asked by : <a href="/users/{{ question.author }}">@{{ question.author }}</a></h6>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,174 @@
+
+body {
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	font-size: 24px;
+	font-weight: 300;
+	overflow-x: hidden;
+	
+}
+
+button:focus {
+    outline: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+a:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+h1 {
+	color: #FFFFFF;
+	font-size: 4rem;	
+}
+
+p {
+	color: #FFFFFF;	
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 99%;
+}
+
+
+.tm-content {
+    z-index: 1001;
+}
+
+.form-control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+.form-control::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+.form-control:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+.form-control:-moz-placeholder { /* Firefox 18- */
+  color: white;
+}
+
+.form-control::placeholder {
+    color: white;
+}
+
+.form-control {  
+    color: #FFFFFF;
+    border-radius: .5rem;
+    background-color: transparent;
+    border: 1px solid #FFFFFF;
+    font-size: 1.4rem;
+    font-weight: 300;
+    padding: 0.75rem 1.2rem;
+}
+
+.footer-link {
+    margin: 40px;
+	font-size: 18px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+    text-align:center;
+    width:100%;
+    z-index: 1001;
+}
+
+.navbar-inverse{
+	background-color : transparent;
+	border-color : transparent;
+}
+.navbar-inverse .navbar-collapse{
+	background-color : transparent;
+	border-color : transparent;
+}
+.prata-font {
+	font-family : prata;
+}
+.navbar-brand {
+	font-size : 24px;
+	padding-top : 21px;
+	
+}
+@media screen and (max-width: 600px) { 
+	.tm-content {
+		margin-top: 10px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+    .container {
+    	width : 290px;
+    }
+}
+
+.cb-slideshow-text-container {
+    height: 100vh;
+    display: flex;
+}
+
+
+.landing-text {
+    margin-top: 140px;
+}
+
+.about {
+    margin-top: 80px;
+}
+
+.service {
+    padding: 10px;
+    margin-left: 60px;
+    margin-right: 60px;
+    width: 260px;
+    text-align: center;
+}
+
+@media screen and (max-width: 576px) {
+
+    .container {
+        width : 290px;
+    }
+    .footer-link {
+        position: relative;
+    }
+}
+
+.navbar {
+    border-radius: 0px;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+    color: #ffffff;
+}
+.navbar-inverse .navbar-brand{
+    color: #ffffff;
+}
+
+.showmore {
+    display: inline;
+}
+.question {
+    color: black;
+}
+.author {
+    font-size: 12px;
+}
+.report-button {
+    color: red;
+    font-weight: bold;
+    background-color: transparent;
+}
+.transparent-button-white {
+    border : none;
+    color: white;
+    font-weight: bold;
+    background-color: transparent;
+}

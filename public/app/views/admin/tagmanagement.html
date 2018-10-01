@@ -1,0 +1,40 @@
+<div class="text-center">
+    <h1>
+        Tags Management
+    </h1>
+</div>
+<br>
+<br>
+<div>
+    <form ng-submit="tagmanagement.addtag(tagData);">
+        <label>
+            Tag name :
+        </label>
+        <br>
+        <input class="form-control" type="text" placeholder="Enter tag name" ng-model="tagmanagement.tagData.tag" required>
+        <br>
+        <button type="submit" class="btn btn-primary">Add Tag</button>
+    </form>
+    <br>
+    <div class="row show-hide-message">
+        <div class="alert alert-success" ng-show="tagmanagement.successMsg">
+            <strong> Success! </strong> {{ tagmanagement.successMsg  }}
+        </div>
+    </div>
+
+    <div class="row show-hide-message">
+        <div class="alert alert-danger" ng-show="tagmanagement.errorMsg">
+            <strong> Oops! </strong> {{ tagmanagement.errorMsg  }}
+        </div>
+    </div>
+</div>
+
+<div>
+    <h3>
+        Delete Tags :
+    </h3>
+    <br>
+    <div ng-repeat="tag in tagmanagement.tags" style="display: inline;">
+        <button class="btn btn-danger" type="button" ng-click="tagmanagement.deletetag(tag.tag);"> {{ tag.tag}} &nbsp; &nbsp; &nbsp; <b>x</b></button>
+    </div>
+</div>

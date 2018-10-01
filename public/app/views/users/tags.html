@@ -1,0 +1,14 @@
+<br>
+<div class="text-center">
+    <h1>
+        Topics
+    </h1>
+</div>
+<br>
+<div>
+    <div ng-repeat="tag in alltags.tags" style="display: inline;">
+        <a href="/tag/{{tag.tag}}">
+            <button type="button" class="btn btn-primary" style="padding:30px;margin-left: 30px;"> {{ tag.tag }}</button>
+        </a>
+    </div>
+</div>

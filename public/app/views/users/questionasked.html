@@ -1,0 +1,21 @@
+<div class="text-center">
+    <br>
+    <h1>All Asked Questions</h1>
+</div>
+<div class="row card">
+    <div ng-repeat="question in questionasked.questions" style="border: 2px solid white;margin-top: 10px;border-radius: 10px;">
+        <div style="padding: 15px;">
+            <strong>
+                <a href="/question/{{question._id }}">
+                    <p style="color: white;" class="question"> <b> {{ question.question }} ? </b> </p>
+                </a>
+                <a href="/tag/{{question.tag}}">
+                    <span class="label label-success author">{{ question.tag }}</span>
+                </a>
+            </strong>
+        </div>
+        <div style="color: white;display: block;padding: 15px;">
+            <h6 class="author">Asked by : <a style="color: white;" href="/users/{{ question.author }}"> @{{ question.author }}</a>   &nbsp;<button ng-show="!main.admin" type="button" class="btn report-button" ng-click="main.report(question);">Report Question</button>  &nbsp; <button class="btn transparent-button-white">{{ question.totalviews }} Views</button>  &nbsp; <button class="btn transparent-button-white">{{ main.totalanswers[$index] }} Answers</button>  &nbsp; <button class="btn transparent-button-white">{{ question.totallikes }} Likes</button></h6>
+        </div>
+    </div>
+</div>

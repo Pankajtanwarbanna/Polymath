@@ -1,0 +1,80 @@
+
+<br>
+<div style="border: 2px solid white;margin-top: 10px;border-radius: 10px;">
+    <div style="padding: 15px;">
+
+        <div style="color: white;padding-left: 15px;">
+            <b> {{ readquestion.question }}? </b>
+        </div>
+        <a href="/tag/{{readquestion.tag}}" style="padding-left: 15px;">
+            <span class="label label-success author">{{ readquestion.tag }}</span>
+        </a>
+        <div class="panel-body">
+            <div ng-repeat="answer in readquestion.answers">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6 class="author">Answered by : <a href="/users/{{ answer.author }}">@{{ answer.author }}</a></h6>
+                    </div>
+                    <div class="panel-body">
+                        {{ answer.answer }}
+
+                    </div>
+                    <div class="panel-footer">
+                        <button ng-click="readquestion.upvote(readquestion.questionId,$index);" class="btn btn-success" type="button"><span class="glyphicon glyphicon-thumbs-up"> {{ answer.upvote }}</span> </button>
+                        <button ng-click="readquestion.downvote(readquestion.questionId,$index);" class="btn btn-danger" type="button"><span class="glyphicon glyphicon-thumbs-down"> {{ answer.downvote }}</span></button>
+                        <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-eye-open"> {{ answer.views }}</span></button>
+                        <button class="btn btn-warning" type="button" ng-click="readquestion.saveanswer(readquestion.questionId,$index);">Save Answer</button>
+                        <button class="btn btn-primary" type="button" ng-click="readquestion.edits();">Suggest Edits</button>
+                        <button ng-show="readquestion.admin" class="btn btn-danger" type="button" ng-click="readquestion.deleteAnswer(readquestion.questionId,$index);">Delete Answer</button>
+                        <button class="btn btn-info" type="button" ng-click="readquestion.saythanks(answer.author);">Say Thanks</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- suggest edit div -->
+
+            <div ng-show="readquestion.suggesteditsdiv">
+                <form ng-submit="readquestion.editSuggest(editData);">
+                    <label> Edits :</label>
+                    <textarea class="form-control" rows="5" ng-model="readquestion.editData.text" style="color: white;" required></textarea>
+                    <br>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </form>
+
+            </div>
+
+            <!-- footer -->
+            <div>
+                <button ng-disabled="readquestion.disableAnswer" class="btn btn-info" ng-click="readquestion.writeAnswer();">Answer Now</button>
+
+                <div class="container" ng-show="readquestion.answerDiv">
+                    <form ng-submit="readquestion.addanswer(answerData);">
+                        <label>Answer:</label>
+                        <textarea class="form-control" rows="5" ng-model="readquestion.answerData.answer" style="color: white;" required></textarea>
+                        <br>
+                        <div class="form-group">
+                            <label>Want to be anonymous?</label>
+                            <select ng-model="readquestion.answerData.anonymous" style="background-color: transparent;padding: 5px;margin-left: 5px;" required>
+                                <option value="yes">
+                                    Yes
+                                </option>
+                                <option value="no">
+                                    No
+                                </option>
+                            </select>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
