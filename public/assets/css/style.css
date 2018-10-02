@@ -162,13 +162,11 @@ p {
     font-size: 12px;
 }
 .report-button {
-    border : none;
     color: red;
     font-weight: bold;
     background-color: transparent;
 }
 .transparent-button-white {
-    border : none;
     color: white;
     font-weight: bold;
     background-color: transparent;

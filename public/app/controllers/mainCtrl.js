@@ -33,6 +33,7 @@ angular.module('mainController', ['authServices'])
                     app.likes = data.data.likes;
                     app.totalanswers = data.data.totalanswers;
                     app.admin = data.data.admin;
+                    app.number = data.data.number;
                 } else {
                     app.errorMsg = data.data.message;
                     app.admin = data.data.admin;

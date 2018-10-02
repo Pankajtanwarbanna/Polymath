@@ -981,8 +981,6 @@ module.exports = function (router){
                         })
                     } else {
 
-                        console.log(questions);
-
                         totalanswers = [];
 
                         for(var i=0;i<questions.length;i++) {
@@ -994,7 +992,8 @@ module.exports = function (router){
                                 success : true,
                                 questions : questions,
                                 totalanswers : totalanswers,
-                                admin : true
+                                admin : true,
+                                number : totalanswers.length
                             });
 
                         } else {
@@ -1002,7 +1001,8 @@ module.exports = function (router){
                                 success: true,
                                 questions: questions,
                                 totalanswers: totalanswers,
-                                admin: false
+                                admin: false,
+                                number : totalanswers.length
                             });
                         }
                     }
@@ -1368,13 +1368,15 @@ module.exports = function (router){
                             res.json({
                                 success : true,
                                 questions : questions,
-                                permission : mainUser.permission
+                                permission : mainUser.permission,
+                                number : questions.length
                             });
                         }
                     } else {
                         res.json({
                             success : false,
-                            message : 'Insufficient permission.'
+                            message : 'Insufficient permission.',
+                            number : questions.length
                         });
                     }
                 }

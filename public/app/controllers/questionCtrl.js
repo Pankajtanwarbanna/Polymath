@@ -5,8 +5,6 @@ angular.module('questionController', ['userServices'])
     var app = this;
     app.tags = false;
 
-    console.log('testing');
-
     user.gettags().then(function (data) {
         console.log(data);
         if(data.data.success) {
@@ -281,7 +279,7 @@ angular.module('questionController', ['userServices'])
 })
 
 .controller('notificationCtrl', function () {
-
+    // yet to build
 
 })
 
@@ -330,11 +328,13 @@ angular.module('questionController', ['userServices'])
 
     app.errorMsg = false;
     app.questions = false;
+    app.number = 0;
 
     function getAllQuestions() {
         user.getQuestions().then(function (data) {
             if(data.data.success) {
                 app.questions = data.data.questions;
+                app.number = data.data.number;
             } else {
                 app.errorMsg = data.data.message;
             }
@@ -391,6 +391,6 @@ angular.module('questionController', ['userServices'])
 })
 
 .controller('answeredCtrl', function () {
-    console.log('answered');
+    // yet to build
 
 });

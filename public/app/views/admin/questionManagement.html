@@ -1,7 +1,7 @@
 <br>
 <br>
-
-<div class="panel panel-primary">
+<!-- Div to show when questions database is not empty -->
+<div class="panel panel-primary" ng-show="questionManagement.number>1">
     <div class="panel-heading">
         <strong>Questions management</strong>
     </div>
@@ -22,6 +22,11 @@
         </div>
 
     </div>
+</div>
 
-
+<!-- When question database is empty -->
+<div class="panel panel-primary" ng-show="questionManagement.number===0">
+    <div class="panel-heading">
+        No questions available.
+    </div>
 </div>
