@@ -87,7 +87,8 @@ angular.module('mainController', ['authServices'])
                 app.successMsg = data.data.message + ' Redirecting to home page...';
                 $timeout(function () {
                     $location.path('/');
-                    app.logData = '';
+                    app.logData.username = '';
+                    app.logData.password = '';
                     app.successMsg = false;
                 }, 2000);
 

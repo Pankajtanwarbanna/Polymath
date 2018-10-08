@@ -64,7 +64,7 @@ angular.module('userCtrl',['userServices'])
     user.getUsers().then(function (data) {
 
         if(data.data.success) {
-            console.log(app.users);
+            //console.log(data.data.users);
             app.users = data.data.users;
         } else {
             app.errorMsg = data.data.message;

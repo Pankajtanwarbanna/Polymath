@@ -1,14 +1,27 @@
 <br>
-<div class="text-center">
-    <h1>
-        Top Users
-    </h1>
-</div>
-<br>
-<div>
-    <div ng-repeat="user in users.users" style="display: inline;border: 2px solid white;padding: 20px;margin-left: 10px;" class="text-center">
-        <a href="/users/{{user.username}}">
-            <button type="button" class="btn transparent-button-white" style="padding:30px;margin-left: 30px;font-size:30px;"> {{ user.username }}</button>
-        </a>
+<!-- Not only admin, users can also view this page -->
+
+<div class="container-fluid">
+
+    <div style="border: 2px solid white;margin-top: 20px;border-radius: 10px;">
+        <div style="padding: 15px;">
+            <div style="color: white;padding-left: 15px;">
+                <strong>Top Users</strong>
+            </div>
+            <div style="padding-top: 12px;">
+                <table class="table" style="color: white;" rules=none>
+                    <tr ng-repeat="person in users.users">
+                        <th>{{ person.name }}</th>
+                        <th>{{ person.username }}</th>
+                        <th ng-show="person.active"><span class="label label-success author">Active</span></th>
+                        <th ng-show="!person.active"><span class="label label-danger author"> Inactive </span></th>
+                        <th>{{ person.email }}</th>
+                        <th><a href="/users/{{ person.username }}" style="color: #a90329;"><span class="glyphicon glyphicon-user"></span></a> </th>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
     </div>
 </div>
