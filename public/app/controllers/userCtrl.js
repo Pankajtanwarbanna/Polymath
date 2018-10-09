@@ -88,4 +88,95 @@ angular.module('userCtrl',['userServices'])
 
     }
     gettag();
+})
+
+.controller('savedAnswerCtrl', function ($routeParams,user) {
+
+    var app = this;
+
+    app.savedanswers = false;
+    app.errorMsg = false;
+
+    user.getSavedanswers().then(function (data) {
+        //console.log(data);
+        if(data.data.success) {
+            app.savedanswers = data.data.savedArray;
+        } else {
+            app.errorMsg = data.data.message;
+        }
+    });
+})
+
+.controller('questionaskedCtrl', function ($routeParams, user) {
+    //console.log($routeParams.username);
+    var app = this;
+
+    user.getQuestionsasked($routeParams.username).then(function (data) {
+        //console.log(data);
+        if(data.data.success) {
+            app.questions = data.data.questions;
+        } else {
+            app.errorMsg = data.data.message;
+        }
+    });
+})
+
+.controller('answeredCtrl', function () {
+    // yet to build
+
+})
+
+.controller('notificationCtrl', function () {
+    // yet to build
+
+})
+
+
+.controller('usersprofileCtrl', function (user,$routeParams) {
+    // this controller will show the profile page of user at which we click
+    var app = this;
+    app.errorMsg = false;
+    app.username = false;
+    app.name = false;
+    app.email = false;
+    app.permission = false;
+    app.follow = false;
+
+    user.checkfollow($routeParams.username).then(function (data) {
+        if(data.data.success) {
+            user.checkfollowdata($routeParams.username).then(function (data) {
+                console.log(data);
+                if(data.data.success) {
+                    app.follow = false;
+                } else {
+                    app.follow = true;
+                }
+            });
+        } else {
+            app.follow = true;
+        }
+    });
+
+    user.getProfile($routeParams.username).then(function (data) {
+        if(data.data.success) {
+            app.username = data.data.user.username;
+            app.email = data.data.user.email;
+            app.name = data.data.user.name;
+            app.permission = data.data.user.permission;
+            app.id = data.data.user._id;
+            // more entries to be add
+
+        } else {
+            app.errorMsg = data.data.message;
+        }
+    });
+
+    app.followhim = function () {
+        console.log('trying to follow');
+        console.log($routeParams.username);
+        user.followhim($routeParams.username).then(function (data) {
+            console.log(data);
+        });
+    };
+
 });

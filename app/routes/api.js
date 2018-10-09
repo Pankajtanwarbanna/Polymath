@@ -1536,37 +1536,29 @@ module.exports = function (router){
     });
 
     // router to get saved answers
-    router.get('/getSavedanswers/:username', function (req,res) {
+    router.get('/getSavedanswers', function (req,res) {
 
-        console.log(req.params.username);
-        if(!req.params.username) {
-            res.json({
-                success : false,
-                message : 'Entries are missing'
-            });
-        } else {
 
-            User.findOne({ username : req.params.username }, function (err,user) {
-                if(err) throw err;
+        User.findOne({ username : req.decoded.username }, function (err,user) {
+            if(err) throw err;
 
-                if(!user) {
-                    res.json({
-                        success : false,
-                        message : 'User not found.'
-                    });
-                } else {
+            if(!user) {
+                res.json({
+                    success : false,
+                    message : 'User not found.'
+                });
+            } else {
 
-                    savedArray = [];
+                savedArray = [];
 
-                    console.log(user);
+                //console.log(user);
 
-                    res.json({
-                        success : true,
-                        savedArray : user.savedanswer
-                    })
-                }
-            });
-        }
+                res.json({
+                    success : true,
+                    savedArray : user.savedanswer
+                })
+            }
+        });
     });
 
     // get all tags from database

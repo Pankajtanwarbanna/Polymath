@@ -1,15 +1,17 @@
 <br>
 <!-- Not only admin, users can also view this page -->
+<div class="text-center">
+    <h1>
+        Top Users
+    </h1>
+</div>
 
 <div class="container-fluid">
 
-    <div style="border: 2px solid white;margin-top: 20px;border-radius: 10px;">
+    <div>
         <div style="padding: 15px;">
-            <div style="color: white;padding-left: 15px;">
-                <strong>Top Users</strong>
-            </div>
             <div style="padding-top: 12px;">
-                <table class="table" style="color: white;" rules=none>
+                <table class="table" style="border: 2px solid white;margin-top: 20px;color: white;" rules=none>
                     <tr ng-repeat="person in users.users">
                         <th>{{ person.name }}</th>
                         <th>{{ person.username }}</th>

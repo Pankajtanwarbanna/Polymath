@@ -171,3 +171,15 @@ p {
     font-weight: bold;
     background-color: transparent;
 }
+/* Profile page CSS */
+.side-menu{
+    padding-bottom: 10px;
+}
+.side-menu img{
+    height: 35px;
+    width: 35px;
+}
+.side-menu p{
+    font-size: 17px;
+    margin-top: 12px;
+}

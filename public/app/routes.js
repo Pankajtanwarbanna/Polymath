@@ -3,16 +3,6 @@ var app = angular.module('userRoutes', ['ngRoute'])
 .config(function ($routeProvider, $locationProvider) {
     $routeProvider
 
-        .when('/guide', {
-            templateUrl : '/app/views/pages/guide.html',
-            authenticated : true
-        })
-
-        .when('/kickstart', {
-            templateUrl : '/app/views/pages/kickstart.html',
-            authenticated : true
-        })
-
         .when('/register', {
             templateUrl : '/app/views/users/register.html',
             controller : 'regCtrl',
@@ -113,14 +103,14 @@ var app = angular.module('userRoutes', ['ngRoute'])
         })
 
         .when('/users/:username', {
-            templateUrl : 'app/views/askus/usersProfile.html',
+            templateUrl : 'app/views/users/userProfile.html',
             authenticated : true,
             controller : 'usersprofileCtrl',
             controllerAs : 'usersprofile'
         })
 
-        .when('/notification', {
-            templateUrl : 'app/views/askus/notification.html',
+        .when('/notifications', {
+            templateUrl : 'app/views/users/notifications.html',
             authenticated : true,
             controller : 'notificationCtrl',
             controllerAs : 'notification'
@@ -140,8 +130,8 @@ var app = angular.module('userRoutes', ['ngRoute'])
             controllerAs : 'questionManagement'
         })
 
-        .when('/users/:username/savedanswers', {
-            templateUrl : 'app/views/askus/savedanswers.html',
+        .when('/savedanswers', {
+            templateUrl : 'app/views/users/savedanswers.html',
             authenticated : true,
             controller : 'savedAnswerCtrl',
             controllerAs : 'saved'

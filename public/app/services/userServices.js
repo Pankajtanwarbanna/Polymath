@@ -130,13 +130,12 @@ angular.module('userServices',[])
 
     // save an answer
     userFactory.saveanswer = function (saveObj) {
-        console.log(saveObj);
         return $http.post('/api/saveanswer/', saveObj);
     };
 
     // display saved answers
-    userFactory.getSavedanswers = function (username) {
-        return $http.get('/api/getSavedanswers/'+username);
+    userFactory.getSavedanswers = function () {
+        return $http.get('/api/getSavedanswers/');
     };
 
     // update views

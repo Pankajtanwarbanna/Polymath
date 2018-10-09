@@ -6,9 +6,8 @@ angular.module('questionController', ['userServices'])
     app.tags = false;
 
     user.gettags().then(function (data) {
-        console.log(data);
+        //console.log(data);
         if(data.data.success) {
-            console.log('testing');
             app.tags = data.data.tags;
         } else {
             console.log('Tags not found.')
@@ -16,9 +15,12 @@ angular.module('questionController', ['userServices'])
     });
     app.errorMsg = false;
     app.limit = 5;
+    //app.number = 0;
 
     user.getallQuestions().then(function (data) {
         if(data.data.success) {
+            //console.log(data);
+            //app.number = data.data.number;
             app.questions = data.data.questions;
         } else {
             app.errorMsg = data.data.message;
@@ -173,15 +175,15 @@ angular.module('questionController', ['userServices'])
     };
 
     app.saveanswer = function (id,index) {
-        console.log(id);
-        console.log(index);
+        //console.log(id);
+        //console.log(index);
         saveObj ={};
         saveObj.questionid = id;
         saveObj.answerindex = index;
         app.errorMsg = false;
 
         user.saveanswer(saveObj).then(function (data) {
-            console.log(data);
+            //console.log(data);
             if(data.data.success) {
                 console.log('Answer saved successfully');
             } else {
@@ -227,60 +229,6 @@ angular.module('questionController', ['userServices'])
             app.errorMsg = data.data.message;
         }
     });
-})
-
-.controller('usersprofileCtrl', function (user,$routeParams) {
-    // this controller will show the profile page of user at which we click
-    var app = this;
-    app.errorMsg = false;
-    app.username = false;
-    app.name = false;
-    app.email = false;
-    app.permission = false;
-    app.follow = false;
-
-    user.checkfollow($routeParams.username).then(function (data) {
-        if(data.data.success) {
-            user.checkfollowdata($routeParams.username).then(function (data) {
-                console.log(data);
-                if(data.data.success) {
-                    app.follow = false;
-                } else {
-                    app.follow = true;
-                }
-            });
-        } else {
-            app.follow = true;
-        }
-    });
-
-    user.getProfile($routeParams.username).then(function (data) {
-        if(data.data.success) {
-            app.username = data.data.user.username;
-            app.email = data.data.user.email;
-            app.name = data.data.user.name;
-            app.permission = data.data.user.permission;
-            app.id = data.data.user._id;
-            // more entries to be add
-
-        } else {
-            app.errorMsg = data.data.message;
-        }
-    });
-
-    app.followhim = function () {
-        console.log('trying to follow');
-        console.log($routeParams.username);
-        user.followhim($routeParams.username).then(function (data) {
-            console.log(data);
-        });
-    };
-
-})
-
-.controller('notificationCtrl', function () {
-    // yet to build
-
 })
 
 .controller('reportCtrl', function (user) {
@@ -333,6 +281,7 @@ angular.module('questionController', ['userServices'])
     function getAllQuestions() {
         user.getQuestions().then(function (data) {
             if(data.data.success) {
+                //console.log(data.data.success);
                 app.questions = data.data.questions;
                 app.number = data.data.number;
             } else {
@@ -354,43 +303,4 @@ angular.module('questionController', ['userServices'])
             }
         });
     };
-})
-
-.controller('savedAnswerCtrl', function ($routeParams,user) {
-
-    var app = this;
-
-    app.username = $routeParams.username;
-
-    console.log(app.username);
-    app.savedanswers = false;
-    app.errorMsg = false;
-
-    user.getSavedanswers(app.username).then(function (data) {
-        console.log(data);
-        if(data.data.success) {
-            app.savedanswers = data.data.savedArray;
-        } else {
-            app.errorMsg = data.data.message;
-        }
-    });
-})
-
-.controller('questionaskedCtrl', function ($routeParams, user) {
-    //console.log($routeParams.username);
-    var app = this;
-
-    user.getQuestionsasked($routeParams.username).then(function (data) {
-        //console.log(data);
-        if(data.data.success) {
-            app.questions = data.data.questions;
-        } else {
-            app.errorMsg = data.data.message;
-        }
-    });
-})
-
-.controller('answeredCtrl', function () {
-    // yet to build
-
 });

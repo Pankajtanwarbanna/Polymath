@@ -1,0 +1,26 @@
+<div class="text-center">
+    <h1>
+        Saved Answers
+    </h1>
+</div>
+<br>
+<div style="border: 2px solid white;margin-top: 5px;border-radius: 10px;">
+    <div style="padding: 15px;" ng-repeat="answer in saved.savedanswers">
+
+        <div style="color: white;padding-left: 15px;">
+            <b> {{ answer.question }}? </b>
+        </div>
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h6 class="author">Answered by : <a href="/users/{{ answer.author }}">@{{ answer.author }}</a></h6>
+                </div>
+                <div class="panel-body">
+                    {{ answer.answer }}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
