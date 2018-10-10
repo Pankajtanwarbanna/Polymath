@@ -1983,7 +1983,10 @@ module.exports = function (router){
         })
     });
 
-    // router to get all questions answered by user
+    /*
+    router to get all questions answered by user
+    By - Pankaj Tanwar on 10 Oct. 2018
+    */
     router.get('/getQuestionsanswered/:username', function (req,res) {
         //console.log(req.params.username);
         if(!req.params.username) {
@@ -2011,10 +2014,11 @@ module.exports = function (router){
                     // obj for answered question
                     answeredArrayObj = {};
 
+                    // This searching is too much time consuming - Find alternate one
+
                     for(var i=0;i < questions.length;i++) {
-                        //console.log(questions[i]);
+
                         if(questions[i].answers.length > 0) {
-                            //console.log(questions[i].answers);
 
                             for(var j=0;j<questions[i].answers.length;j++) {
                                 if(questions[i].answers[j].author === req.params.username) {
