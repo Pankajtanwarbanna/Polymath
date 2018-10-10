@@ -215,5 +215,10 @@ angular.module('userServices',[])
         return $http.get('/api/getQuestionsasked/'+ username);
     };
 
+    // get answered question by user
+    userFactory.getQuestionsanswered = function (username) {
+        return $http.get('/api/getQuestionsanswered/'+ username);
+    }
+
     return userFactory;
 });

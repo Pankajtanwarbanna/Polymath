@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var titlize = require('mongoose-title-case');
 var validate = require('mongoose-validator');
+mongoose.set('useCreateIndex', true);
 
 // Backend mongoose validators
 var nameValidator = [

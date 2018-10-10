@@ -107,6 +107,7 @@ angular.module('userCtrl',['userServices'])
     });
 })
 
+// controller to get all the question asked by user
 .controller('questionaskedCtrl', function ($routeParams, user) {
     //console.log($routeParams.username);
     var app = this;
@@ -121,8 +122,28 @@ angular.module('userCtrl',['userServices'])
     });
 })
 
-.controller('answeredCtrl', function () {
-    // yet to build
+// Controller to get all the answer by user
+.controller('answeredCtrl', function ($routeParams,user) {
+
+    var app = this;
+
+    app.number = false;
+    app.errorMsg = false;
+    app.questionAnswered = false;
+    app.author = $routeParams.username;
+
+    //console.log($routeParams.username);
+    user.getQuestionsanswered($routeParams.username).then(function (data) {
+        //console.log(data);
+
+        if(data.data.success) {
+            app.number = data.data.number;
+            app.questionsAnswered = data.data.questionsAnswered;
+        } else {
+            app.errorMsg = data.data.message;
+        }
+
+    })
 
 })
 

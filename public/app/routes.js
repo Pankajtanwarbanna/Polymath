@@ -175,8 +175,8 @@ var app = angular.module('userRoutes', ['ngRoute'])
         .when('/answered/:username', {
             templateUrl : 'app/views/users/answered.html',
             authenticated : true,
-            controller : 'questionaskedCtrl',
-            controllerAs : 'questionasked'
+            controller : 'answeredCtrl',
+            controllerAs : 'questionanswered'
         })
 
         .when('/questionasked/:username', {

@@ -1983,6 +1983,66 @@ module.exports = function (router){
         })
     });
 
+    // router to get all questions answered by user
+    router.get('/getQuestionsanswered/:username', function (req,res) {
+        //console.log(req.params.username);
+        if(!req.params.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            })
+        } else {
+
+            Question.find({  }, function (err, questions) {
+
+                if(err) {
+                    throw err;
+                }
+
+                if(!questions) {
+                    res.json({
+                        success: false,
+                        message: 'No question found.'
+                    });
+                } else {
+
+                    // array for all answered obj
+                    answeredArray = [];
+                    // obj for answered question
+                    answeredArrayObj = {};
+
+                    for(var i=0;i < questions.length;i++) {
+                        //console.log(questions[i]);
+                        if(questions[i].answers.length > 0) {
+                            //console.log(questions[i].answers);
+
+                            for(var j=0;j<questions[i].answers.length;j++) {
+                                if(questions[i].answers[j].author === req.params.username) {
+                                    answeredArrayObj.question = questions[i].question;
+                                    answeredArrayObj.answer = questions[i].answers[j].answer;
+                                    answeredArrayObj.tag = questions[i].tag;
+                                    answeredArrayObj._id = questions[i]._id;
+
+                                    answeredArray.push(answeredArrayObj);
+
+                                    // again make it empty for next answer
+                                    answeredArrayObj = {};
+                                }
+                            }
+                        }
+                    }
+
+                    res.json({
+                        success : true,
+                        questionsAnswered : answeredArray,
+                        number : answeredArray.length
+                    });
+
+                }
+            })
+        }
+    });
+
     return router;
 };
 
