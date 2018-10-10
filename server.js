@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/public'));
 // to differentiate between backend and front end routes
 app.use('/api',appRoutes);
 
-mongoose.connect('mongodb://127.0.0.1/polymath', function (err) {
+mongoose.connect('mongodb://127.0.0.1/polymath',  { useNewUrlParser: true }, function (err) {
     if(err) {
         console.log('Error in connecting to database.');
     } else {
