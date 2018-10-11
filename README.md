@@ -23,9 +23,9 @@ $ sudo apt-get install nodejs
 $ sudo apt-get install npm
 ```
 3. Install MongoDB
-
+```
 [Follow this link](https://docs.mongodb.com/v3.2/tutorial/install-mongodb-on-ubuntu/)
-
+```
 ### Run Software
 
 1. git clone https://github.com/Pankajtanwarbanna/Polymath.git
@@ -36,10 +36,10 @@ $ sudo apt-get install npm
 ** Update your own sendgrid API key in API.js   **
 
 ## Author
-** Pankaj Tanwar
+**Pankaj Tanwar**
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License
 
 Contributors are most welcomed ! Don't forget to leave a star if you like it.
