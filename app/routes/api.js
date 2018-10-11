@@ -1774,10 +1774,11 @@ module.exports = function (router){
             } else {
                 var flag = 1;
                 for(var i=0;i< user.followers.length;i++) {
-                    if(user.followers[i] === req.decoded.username ) {
+                    if(user.followers[i].username === req.decoded.username ) {
                         flag = 2;
                         res.json({
-                            success : false
+                            success : false,
+                            message : 'Already following.'
                         });
                         break;
                     }
@@ -1828,13 +1829,29 @@ module.exports = function (router){
                         followingObj = {};
                         followingObj.username = user.username;
 
-                        user.followers.push(followObj);
-                        mainUser.following.push(followingObj);
+                        var followflag = 1;
+
+                        for(var i=0;i<user.followers.length;i++) {
+                            if(user.followers[i].username === req.decoded.username) {
+                                followflag = 2;
+                                break;
+                            }
+                        }
+
+                        if(followflag === 1) {
+                            user.followers.push(followObj);
+                            mainUser.following.push(followingObj);
+                        }
 
                         user.save(function (err) {
                             if(err) {
                                 res.json({
                                     success : false
+                                });
+                            } else if (followflag === 2) {
+                                res.json({
+                                    success : false,
+                                    message : 'Already following.'
                                 });
                             } else {
                                 mainUser.save(function (err) {

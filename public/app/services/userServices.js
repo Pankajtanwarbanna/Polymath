@@ -190,7 +190,6 @@ angular.module('userServices',[])
 
     // get users followers
     userFactory.getfollowers = function (username) {
-        console.log(username);
         return $http.get('/api/followers/'+username);
     };
 

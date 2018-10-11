@@ -12,8 +12,9 @@
         <h1>{{ usersprofile.name}}</h1>
         <br>
         <br>
-        <span class="label label-success">Beginner</span>&nbsp; &nbsp;&nbsp;
-        <button ng-show="!usersprofile.follow" class="btn btn-primary" type="button" ng-click="usersprofile.followhim();"><b>Follow</b></button>
+        <span class="label label-success">Beginner</span>
+        <button ng-show="!usersprofile.follow && !usersprofile.sameuser" class="btn btn-primary" type="button" ng-click="usersprofile.followhim();"><b>Follow</b></button>
+        <button ng-show="usersprofile.follow" class="btn btn-danger" type="button" ng-click="usersprofile.unfollowhim();"><b>Unfollow</b></button>
         <a href="/edit/{{ usersprofile.id }}">
             <button class="btn transparent-button-white" type="button">Edit Profile</button>
         </a>

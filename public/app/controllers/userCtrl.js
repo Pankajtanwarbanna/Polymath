@@ -33,7 +33,7 @@ angular.module('userCtrl',['userServices'])
     var app = this;
 
     user.getfollowers($routeParams.username).then(function (data) {
-        console.log(data);
+        //console.log(data);
         if(data.data.success) {
             app.followers = data.data.followers;
             console.log('success');
@@ -148,7 +148,8 @@ angular.module('userCtrl',['userServices'])
 })
 
 .controller('notificationCtrl', function () {
-    // yet to build
+
+    console.log('Notification Ctrl is not built yet.')
 
 })
 
@@ -161,22 +162,29 @@ angular.module('userCtrl',['userServices'])
     app.name = false;
     app.email = false;
     app.permission = false;
+    app.sameuser = false;
     app.follow = false;
 
-    user.checkfollow($routeParams.username).then(function (data) {
-        if(data.data.success) {
-            user.checkfollowdata($routeParams.username).then(function (data) {
-                console.log(data);
-                if(data.data.success) {
-                    app.follow = false;
-                } else {
-                    app.follow = true;
-                }
-            });
-        } else {
-            app.follow = true;
-        }
-    });
+    function followFunction() {
+
+        user.checkfollow($routeParams.username).then(function (data) {
+            //console.log(data);
+            if(data.data.success) {
+                user.checkfollowdata($routeParams.username).then(function (data) {
+                    //console.log(data);
+                    if(data.data.success) {
+                        app.follow = false;
+                    } else {
+                        app.follow = true;
+                    }
+                });
+            } else {
+                app.sameuser = true;
+            }
+        });
+    }
+
+    followFunction();
 
     user.getProfile($routeParams.username).then(function (data) {
         if(data.data.success) {
@@ -193,10 +201,14 @@ angular.module('userCtrl',['userServices'])
     });
 
     app.followhim = function () {
-        console.log('trying to follow');
-        console.log($routeParams.username);
+
         user.followhim($routeParams.username).then(function (data) {
             console.log(data);
+            if(data.data.success) {
+                followFunction();
+            } else {
+                app.errorMsg = data.data.message;
+            }
         });
     };
 
