@@ -1798,7 +1798,7 @@ module.exports = function (router){
     });
 
 
-    // router to following
+    // router to following - By Pankaj Tanwar : 11 Oct. 2018
     router.post('/followhim/:username', function (req,res) {
         console.log(req.params.username);
 
@@ -1875,7 +1875,7 @@ module.exports = function (router){
 
     });
 
-    // router to unfollow another user
+    // router to unfollow another user - By Pankaj Tanwar : 11 Oct. 2018
     router.post('/unfollowhim/:username', function (req,res) {
         console.log(req.params.username);
 

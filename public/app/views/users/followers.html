@@ -1,13 +1,25 @@
+<!-- Page Header -->
 <div class="text-center">
     <h1>
         Followers
     </h1>
 </div>
-<br>
-<div class="panel panel-primary">
-    <div ng-repeat="follower in followers.followers">
-        <a href="/users/{{follower.username}}">
-            <button type="button" class="btn transparent-button" style="padding:30px;margin-left: 30px;font-size:30px;"> {{ follower.username }}</button>
-        </a>
+<!-- Followers section : Styling need improvements -->
+<div class="container-fluid">
+
+    <div>
+        <div style="padding: 15px;">
+            <div style="padding-top: 12px;">
+                <table class="table" style="border: 2px solid white;margin-top: 20px;color: white;" rules=none>
+                    <tr ng-repeat="person in followers.followers">
+                        <th>  </th> <!-- Just for looking good - Too silly -->
+                        <th>{{ person.username }}</th>
+                        <th><a href="/users/{{ person.username }}" style="color: #a90329;"><span class="glyphicon glyphicon-user"></span></a> </th>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
     </div>
 </div>
