@@ -28,7 +28,7 @@ angular.module('userCtrl',['userServices'])
     };
 })
 
-.controller('followerCtrl', function (user,$routeParams) {
+.controller('followerCtrl', function (user,$routeParams,$location) {
 
     var app = this;
 
@@ -38,12 +38,14 @@ angular.module('userCtrl',['userServices'])
             app.followers = data.data.followers;
             console.log('success');
         } else {
-            console.log('Error.');
+            console.log(data.data.message);
+            event.preventDefault();
+            $location.path('/');
         }
     });
 })
 
-.controller('followingCtrl', function (user,$routeParams) {
+.controller('followingCtrl', function (user,$routeParams,$location) {
 
     var app = this;
 
@@ -53,7 +55,9 @@ angular.module('userCtrl',['userServices'])
             app.following = data.data.following;
             console.log('success');
         } else {
-            console.log('Error.');
+            console.log(data.data.message);
+            event.preventDefault();
+            $location.path('/');
         }
     });
 })
@@ -108,7 +112,7 @@ angular.module('userCtrl',['userServices'])
 })
 
 // controller to get all the question asked by user
-.controller('questionaskedCtrl', function ($routeParams, user) {
+.controller('questionaskedCtrl', function ($routeParams, user,$location) {
     //console.log($routeParams.username);
     var app = this;
 
@@ -118,12 +122,15 @@ angular.module('userCtrl',['userServices'])
             app.questions = data.data.questions;
         } else {
             app.errorMsg = data.data.message;
+            console.log(data.data.message);
+            event.preventDefault();
+            $location.path('/');
         }
     });
 })
 
 // Controller to get all the answer by user
-.controller('answeredCtrl', function ($routeParams,user) {
+.controller('answeredCtrl', function ($routeParams,user,$location) {
 
     var app = this;
 
@@ -140,7 +147,10 @@ angular.module('userCtrl',['userServices'])
             app.number = data.data.number;
             app.questionsAnswered = data.data.questionsAnswered;
         } else {
-            app.errorMsg = data.data.message;
+            //app.errorMsg = data.data.message;
+            console.log(data.data.message);
+            event.preventDefault();
+            $location.path('/');
         }
 
     })
@@ -154,7 +164,7 @@ angular.module('userCtrl',['userServices'])
 })
 
 
-.controller('usersprofileCtrl', function (user,$routeParams) {
+.controller('usersprofileCtrl', function (user,$routeParams,$location) {
     // this controller will show the profile page of user at which we click
     var app = this;
     app.errorMsg = false;
@@ -196,7 +206,9 @@ angular.module('userCtrl',['userServices'])
             // more entries to be add
 
         } else {
-            app.errorMsg = data.data.message;
+            console.log(data.data.message);
+            event.preventDefault();
+            $location.path('/');
         }
     });
 

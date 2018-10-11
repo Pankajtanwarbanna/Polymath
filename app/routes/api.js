@@ -1981,126 +1981,179 @@ module.exports = function (router){
     // router to get followers
     router.get('/followers/:username', function (req,res) {
 
-        User.findOne({ username : req.params.username }, function (err,user) {
-            if(err) {
-                throw err;
-            }
-            if(!user) {
-                res.json({
-                    success : false,
-                    message : 'User not found.'
-                });
-            } else {
-                res.json({
-                    success : true,
-                    followers : user.followers
-                })
-            }
-        })
-
+        if(!req.params.username || !req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+            User.findOne({ username : req.params.username }, function (err,user) {
+                if(err) {
+                    throw err;
+                }
+                if(!user) {
+                    res.json({
+                        success : false,
+                        message : 'User not found.'
+                    });
+                } else {
+                    res.json({
+                        success : true,
+                        followers : user.followers
+                    })
+                }
+            });
+        }
     });
 
     // router to get following
     router.get('/following/:username', function (req,res) {
 
-        User.findOne({ username : req.params.username }, function (err,user) {
-            if(err) {
-                throw err;
-            }
-            if(!user) {
-                res.json({
-                    success : false,
-                    message : 'User not found.'
-                });
-            } else {
-                res.json({
-                    success : true,
-                    following : user.following
-                });
-            }
-        })
-
+        if(!req.params.username || !req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+            User.findOne({ username : req.params.username }, function (err,user) {
+                if(err) {
+                    throw err;
+                }
+                if(!user) {
+                    res.json({
+                        success : false,
+                        message : 'User not found.'
+                    });
+                } else {
+                    res.json({
+                        success : true,
+                        following : user.following
+                    });
+                }
+            });
+        }
     });
 
-    // send edits
+    // send edits : Not build yet. Need improvements
     router.post('/sendEdit', function (req,res) {
-        console.log(req.body);
+        //console.log(req.body);
 
-        console.log(req.decoded.email);
+        //console.log(req.decoded.email);
 
-        var email = {
-            from: 'Polymath, support@polymath.com',
-            to: user.email,
-            subject: 'Suggested Edits',
-            text: 'Hello '+ req.decoded.name + 'Thank you Pankaj Tanwar CEO, Polymath',
-            html: 'Hello <strong>'+ req.decoded.name + '</strong>,<br>You have got some edits on your answers :<br> '+ req.body +'<br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
-        };
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'No user found.'
+            });
+        } else {
 
-        client.sendMail(email, function(err, info){
-            if (err ){
-                console.log(err);
-            }
-            else {
-                console.log('Message sent: ' + info.response);
-            }
-        });
+            var email = {
+                from: 'Polymath, support@polymath.com',
+                to: user.email,
+                subject: 'Suggested Edits',
+                text: 'Hello '+ req.decoded.name + 'Thank you Pankaj Tanwar CEO, Polymath',
+                html: 'Hello <strong>'+ req.decoded.name + '</strong>,<br>You have got some edits on your answers :<br> '+ req.body +'<br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
+            };
+
+            client.sendMail(email, function(err, info){
+                if (err ){
+                    console.log(err);
+                }
+                else {
+                    console.log('Message sent: ' + info.response);
+                }
+            });
 
 
-        res.json({
-            success : true,
-            message : 'Account registered! Please check your E-mail inbox for the activation link.'
-        });
+            res.json({
+                success : true,
+                message : 'Account registered! Please check your E-mail inbox for the activation link.'
+            });
 
+        }
     });
 
-    // say thanks route
+    // say thanks route : Not built fully . Need improvements.
     router.post('/saythanks', function (req,res) {
         console.log(req.body.username);
 
-        var email = {
-            from: 'Polymath, support@polymath.com',
-            to: req.decoded.email,
-            subject: 'Thank you',
-            text: 'Hello '+ req.body.username + 'Thank you Pankaj Tanwar CEO, Polymath',
-            html: 'Hello <strong>'+ req.body.username + '</strong>,<br> '+ req.decoded.username +' wants to say a special thanks to you for your answers.<br><br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
-        };
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'No user found.'
+            });
+        } else {
 
-        client.sendMail(email, function(err, info){
-            if (err ){
-                console.log(err);
-            }
-            else {
-                console.log('Message sent: ' + info.response);
-            }
-        });
+            var email = {
+                from: 'Polymath, support@polymath.com',
+                to: req.decoded.email,
+                subject: 'Thank you',
+                text: 'Hello '+ req.body.username + 'Thank you Pankaj Tanwar CEO, Polymath',
+                html: 'Hello <strong>'+ req.body.username + '</strong>,<br> '+ req.decoded.username +' wants to say a special thanks to you for your answers.<br><br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
+            };
+
+            client.sendMail(email, function(err, info){
+                if (err ){
+                    console.log(err);
+                }
+                else {
+                    console.log('Message sent: ' + info.response);
+                }
+            });
 
 
-        res.json({
-            success : true,
-            message : 'Account registered! Please check your E-mail inbox for the activation link.'
-        });
+            res.json({
+                success : true,
+                message : 'Account registered! Please check your E-mail inbox for the activation link.'
+            });
+
+        }
     });
 
     // get questions
     router.get('/getQuestionsasked/:username', function (req,res) {
         console.log(req.params.username);
-        Question.find({ author : req.params.username} , function (err, questions) {
-            if(err) {
-                throw err;
-            }
+        if(!req.params.username || !req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
 
-            if(!questions) {
-                res.json({
-                    success : true,
-                    message : 'No question found.'
-                });
-            } else {
-                res.json({
-                    questions : questions,
-                    success : true
-                })
-            }
-        })
+            User.findOne({ username : req.params.username}, function (err, user) {
+                if(err) {
+                    throw err;
+                }
+
+                if(!user) {
+                    res.json({
+                        success : false,
+                        message : 'No user found.'
+                    });
+                } else {
+
+                    Question.find({ author : req.params.username} , function (err, questions) {
+                        if(err) {
+                            throw err;
+                        }
+
+                        if(!questions) {
+                            res.json({
+                                success : true,
+                                message : 'No question found.'
+                            });
+                        } else {
+                            res.json({
+                                questions : questions,
+                                success : true
+                            })
+                        }
+                    })
+
+                }
+            });
+
+        }
     });
 
     /*
@@ -2109,61 +2162,77 @@ module.exports = function (router){
     */
     router.get('/getQuestionsanswered/:username', function (req,res) {
         //console.log(req.params.username);
-        if(!req.params.username) {
+        if(!req.params.username || !req.decoded.username) {
             res.json({
                 success : false,
                 message : 'User not found.'
             })
         } else {
 
-            Question.find({  }, function (err, questions) {
+            User.findOne({ username : req.params.username }, function (err, user) {
 
                 if(err) {
                     throw err;
                 }
 
-                if(!questions) {
+                if(!user) {
                     res.json({
-                        success: false,
-                        message: 'No question found.'
+                        success : false,
+                        message : 'User not found.'
                     });
                 } else {
 
-                    // array for all answered obj
-                    answeredArray = [];
-                    // obj for answered question
-                    answeredArrayObj = {};
+                    Question.find({  }, function (err, questions) {
 
-                    // This searching is too much time consuming - Find alternate one
+                        if(err) {
+                            throw err;
+                        }
 
-                    for(var i=0;i < questions.length;i++) {
+                        if(!questions) {
+                            res.json({
+                                success: false,
+                                message: 'No question found.'
+                            });
+                        } else {
 
-                        if(questions[i].answers.length > 0) {
+                            // array for all answered obj
+                            answeredArray = [];
+                            // obj for answered question
+                            answeredArrayObj = {};
 
-                            for(var j=0;j<questions[i].answers.length;j++) {
-                                if(questions[i].answers[j].author === req.params.username) {
-                                    answeredArrayObj.question = questions[i].question;
-                                    answeredArrayObj.answer = questions[i].answers[j].answer;
-                                    answeredArrayObj.tag = questions[i].tag;
-                                    answeredArrayObj._id = questions[i]._id;
+                            // This searching is too much time consuming - Find alternate one
 
-                                    answeredArray.push(answeredArrayObj);
+                            for(var i=0;i < questions.length;i++) {
 
-                                    // again make it empty for next answer
-                                    answeredArrayObj = {};
+                                if(questions[i].answers.length > 0) {
+
+                                    for(var j=0;j<questions[i].answers.length;j++) {
+                                        if(questions[i].answers[j].author === req.params.username) {
+                                            answeredArrayObj.question = questions[i].question;
+                                            answeredArrayObj.answer = questions[i].answers[j].answer;
+                                            answeredArrayObj.tag = questions[i].tag;
+                                            answeredArrayObj._id = questions[i]._id;
+
+                                            answeredArray.push(answeredArrayObj);
+
+                                            // again make it empty for next answer
+                                            answeredArrayObj = {};
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    }
 
-                    res.json({
-                        success : true,
-                        questionsAnswered : answeredArray,
-                        number : answeredArray.length
+                            res.json({
+                                success : true,
+                                questionsAnswered : answeredArray,
+                                number : answeredArray.length
+                            });
+
+                        }
                     });
 
                 }
-            })
+            });
         }
     });
 
