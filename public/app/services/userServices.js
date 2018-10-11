@@ -188,6 +188,11 @@ angular.module('userServices',[])
         return $http.post('/api/followhim/'+ username);
     };
 
+    // user unfollowing another user
+    userFactory.unfollowhim = function (username) {
+        return $http.post('/api/unfollowhim/'+ username);
+    };
+
     // get users followers
     userFactory.getfollowers = function (username) {
         return $http.get('/api/followers/'+username);

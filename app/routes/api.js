@@ -1875,6 +1875,109 @@ module.exports = function (router){
 
     });
 
+    // router to unfollow another user
+    router.post('/unfollowhim/:username', function (req,res) {
+        console.log(req.params.username);
+
+        User.findOne( { username : req.params.username }, function (err,user) {
+
+            if(err) {
+                throw err;
+            }
+
+            if(!user) {
+                res.json({
+                    success : false,
+                    message : 'User not found.'
+                });
+            } else {
+                User.findOne({ username : req.decoded.username }, function (err,mainUser) {
+
+                    if(err) {
+                        throw err;
+                    }
+
+                    if(!mainUser) {
+                        res.json({
+                            success : false,
+                            message : 'User is not logged in.'
+                        });
+                    } else {
+
+                        var flag = 1;
+
+                        // check in user's followers
+                        for(var i=0;i < user.followers.length;i++) {
+                            if(user.followers[i].username === mainUser.username) {
+                                flag = 2;
+                                break;
+                            }
+                        }
+
+                        // check in mainUser's following
+                        for(i = 0;i<mainUser.following.length;i++) {
+                            if(mainUser.following[i].username === user.username) {
+                                flag = 2;
+                                break;
+                            }
+                        }
+
+                        if(flag === 1) {
+                            res.json({
+                                success : false,
+                                message : 'Follow first.'
+                            });
+                        } else {
+
+                            // check in user's followers
+                            for(var i=0;i < user.followers.length;i++) {
+                                if(user.followers[i].username === mainUser.username) {
+                                    user.followers.splice(i,1);
+                                    break;
+                                }
+                            }
+
+                            // check in mainUser's following
+                            for(i = 0;i<mainUser.following.length;i++) {
+                                if(mainUser.following[i].username === user.username) {
+                                    mainUser.following.splice(i,1);
+                                    break;
+                                }
+                            }
+
+                            user.save(function (err) {
+                                if(err) {
+                                    res.json({
+                                        success : false,
+                                        message : 'Error while unfollowing. Please try again.'
+                                    });
+                                } else {
+                                    mainUser.save(function (err) {
+                                        if(err) {
+                                            res.json({
+                                                success : false,
+                                                message : 'Please try again later.'
+                                            });
+                                        } else {
+
+                                            res.json({
+                                                success : true,
+                                                message : 'Successfully unfollowed.'
+                                            });
+
+                                        }
+                                    })
+                                }
+                            });
+                        }
+
+                    }
+                })
+            }
+        })
+
+    });
+
     // router to get followers
     router.get('/followers/:username', function (req,res) {
 

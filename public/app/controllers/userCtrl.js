@@ -212,4 +212,17 @@ angular.module('userCtrl',['userServices'])
         });
     };
 
+    app.unfollowhim = function () {
+
+        user.unfollowhim($routeParams.username).then(function (data) {
+            //console.log(data);
+            if(data.data.success) {
+                followFunction();
+            } else {
+                app.errorMsg = data.data.message;
+                console.log(data.data.message);
+            }
+        });
+    };
+
 });
