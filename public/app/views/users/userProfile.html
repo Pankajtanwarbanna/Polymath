@@ -16,9 +16,9 @@
         <button ng-show="!usersprofile.follow && !usersprofile.sameuser" class="btn btn-primary" type="button" ng-click="usersprofile.followhim();"><b>Follow</b></button>
         <button ng-show="usersprofile.follow" class="btn btn-danger" type="button" ng-click="usersprofile.unfollowhim();"><b>Unfollow</b></button>
         <a href="/edit/{{ usersprofile.id }}">
-            <button class="btn transparent-button-white" type="button">Edit Profile</button>
+            <button ng-show="usersprofile.sameuser" class="btn transparent-button-white" type="button">Edit Profile</button>
         </a>
-        <button ng-click="main.logout();" type="button" class="btn btn-danger">Logout</button>
+        <button ng-show="usersprofile.sameuser" ng-click="main.logout();" type="button" class="btn btn-danger">Logout</button>
     </div>
 </div>
 
