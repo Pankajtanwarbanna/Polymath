@@ -18,7 +18,7 @@ app.use('/api',appRoutes);
 
 mongoose.connect('mongodb://127.0.0.1/polymath',  { useNewUrlParser: true }, function (err) {
     if(err) {
-        console.log('Error in connecting to database.');
+        console.log('Error in connecting to database '+err);
     } else {
         console.log('Successfully connected to database.');
     }
