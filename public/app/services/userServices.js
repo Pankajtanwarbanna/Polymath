@@ -222,7 +222,7 @@ angular.module('userServices',[])
     // get answered question by user
     userFactory.getQuestionsanswered = function (username) {
         return $http.get('/api/getQuestionsanswered/'+ username);
-    }
+    };
 
     return userFactory;
 });
