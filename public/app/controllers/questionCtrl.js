@@ -197,19 +197,35 @@ angular.module('questionController', ['userServices'])
         app.index = index;
     };
 
-    app.editSuggest = function (editData,id,index) {
-        console.log(app.editData.text);
-        console.log(id);
-        console.log(index);
+    app.successMsg = false;
+    app.errorMsg = false;
+
+    app.editSuggest = function (editData,id,index,author) {
 
         var editObj = {};
         editObj.data = app.editData.text;
         editObj.questionId = id;
         editObj.index = index;
-        console.log(editObj);
+        editObj.author = author;
+        //console.log(editObj);
 
         user.sendEdit(editObj).then(function (data) {
-            console.log(data);
+            //console.log(data);
+            if(data.data.success) {
+                app.suggesteditsdiv = false;
+                app.successMsg = data.data.message;
+                $timeout(function () {
+                    app.successMsg = false;
+                    app.editData.text = '';
+                }, 2000 );
+
+            } else {
+                app.errorMsg = data.data.message;
+                $timeout(function () {
+                    app.errorMsg = false;
+                }, 2000 );
+
+            }
         });
     };
 

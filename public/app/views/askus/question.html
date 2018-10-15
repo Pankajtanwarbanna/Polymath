@@ -34,7 +34,7 @@
                 <!-- suggest edit div -->
 
                 <div ng-show="readquestion.suggesteditsdiv && readquestion.index === $index">
-                    <form ng-submit="readquestion.editSuggest(editData, readquestion.questionId, $index);">
+                    <form ng-submit="readquestion.editSuggest(editData, readquestion.questionId, $index,answer.author);">
                         <label> Edits :</label>
                         <textarea class="form-control" rows="5" ng-model="readquestion.editData.text" style="color: white;" required></textarea>
                         <br>
@@ -42,6 +42,18 @@
                         <br>
                     </form>
                     <br>
+                </div>
+
+                <div class="row show-hide-message" ng-show="readquestion.index === $index">
+                    <div class="alert alert-success" ng-show="readquestion.successMsg">
+                        <strong> Success! </strong> {{ readquestion.successMsg  }}
+                    </div>
+                </div>
+
+                <div class="row show-hide-message" ng-show="readquestion.index === $index">
+                    <div class="alert alert-danger" ng-show="readquestion.errorMsg">
+                        <strong> Oops! </strong> {{ readquestion.errorMsg  }}
+                    </div>
                 </div>
 
 

@@ -12,7 +12,7 @@ module.exports = function (router){
     // Nodemailer-sandgrid stuff
     var options = {
         auth: {
-            api_key: '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'
+            api_key: 'API_KEY'
         }
     };
 
@@ -2063,13 +2063,13 @@ module.exports = function (router){
 
                     console.log(question);
 
-                    User.findOne( { username : question.author }, function (err, user) {
+                    User.findOne( { username : req.body.author }, function (err, user) {
                         if(err) {
                             throw err;
                         }
 
                         if(!user) {
-                            if(question.author === "anonymous") {
+                            if(req.body.author === "anonymous") {
                                 res.json({
                                     success : true,
                                     message : 'User is anonymous.Please comment your edits.'
@@ -2081,6 +2081,8 @@ module.exports = function (router){
                                 });
                             }
                         } else {
+
+                            console.log(user.username);
 
                             var email = {
                                 from: 'Polymath, support@polymath.com',
