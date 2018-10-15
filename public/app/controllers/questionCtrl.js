@@ -80,7 +80,6 @@ angular.module('questionController', ['userServices'])
                 app.errorMsg = data.data.message;
             }
         });
-
     };
 
     update();
@@ -126,6 +125,7 @@ angular.module('questionController', ['userServices'])
                 checkObj.author = app.author;
 
                 user.checkUser(checkObj).then(function (data) {
+                    //console.log(data);
                     if(data.data.success) {
                         app.disableAnswer = false;
                     } else {
@@ -192,14 +192,23 @@ angular.module('questionController', ['userServices'])
         });
     };
 
-    app.edits = function () {
+    app.edits = function (index) {
         app.suggesteditsdiv = true;
+        app.index = index;
     };
 
-    app.editSuggest = function (editData) {
-        console.log(app.editData);
+    app.editSuggest = function (editData,id,index) {
+        console.log(app.editData.text);
+        console.log(id);
+        console.log(index);
 
-        user.sendEdit(app.editData).then(function (data) {
+        var editObj = {};
+        editObj.data = app.editData.text;
+        editObj.questionId = id;
+        editObj.index = index;
+        console.log(editObj);
+
+        user.sendEdit(editObj).then(function (data) {
             console.log(data);
         });
     };

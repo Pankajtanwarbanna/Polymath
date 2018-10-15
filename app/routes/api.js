@@ -12,7 +12,7 @@ module.exports = function (router){
     // Nodemailer-sandgrid stuff
     var options = {
         auth: {
-            api_key: 'YOUR_API_KEY'
+            api_key: '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'
         }
     };
 
@@ -1211,7 +1211,7 @@ module.exports = function (router){
 
     // router to check user is allowed to add answer or not
     router.post('/checkUser', function (req,res) {
-        console.log(req.body);
+
         if(!req.body.id || !req.body.author) {
             res.json({
                 success : false,
@@ -1234,7 +1234,8 @@ module.exports = function (router){
                 } else {
                     var flag = 1;
                     for(var i=0;i < question.answers.length;i++) {
-                        if(question.answers[i].author === req.body.author) {
+
+                        if(question.answers[i].author === req.decoded.username) {
                             res.json({
                                 success : false,
                                 message : 'User already answered.'
@@ -1246,7 +1247,7 @@ module.exports = function (router){
                     if(flag === 1){
                         res.json({
                             success : true
-                        })
+                        });
                     }
                 }
             })
@@ -2034,42 +2035,80 @@ module.exports = function (router){
         }
     });
 
-    // send edits : Not build yet. Need improvements
+    // send edits route
     router.post('/sendEdit', function (req,res) {
-        //console.log(req.body);
+        console.log(req.body);
 
         //console.log(req.decoded.email);
 
-        if(!req.decoded.username) {
+        if(!req.decoded.username || !req.body) {
             res.json({
                 success : false,
                 message : 'No user found.'
             });
         } else {
 
-            var email = {
-                from: 'Polymath, support@polymath.com',
-                to: user.email,
-                subject: 'Suggested Edits',
-                text: 'Hello '+ req.decoded.name + 'Thank you Pankaj Tanwar CEO, Polymath',
-                html: 'Hello <strong>'+ req.decoded.name + '</strong>,<br>You have got some edits on your answers :<br> '+ req.body +'<br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
-            };
+            Question.findOne( { _id : req.body.questionId }, function (err, question) {
 
-            client.sendMail(email, function(err, info){
-                if (err ){
-                    console.log(err);
+                if(err) {
+                    throw err;
                 }
-                else {
-                    console.log('Message sent: ' + info.response);
+
+                if(!question) {
+                    res.json({
+                        success : false,
+                        message : 'Question not found.'
+                    });
+                } else {
+
+                    console.log(question);
+
+                    User.findOne( { username : question.author }, function (err, user) {
+                        if(err) {
+                            throw err;
+                        }
+
+                        if(!user) {
+                            if(question.author === "anonymous") {
+                                res.json({
+                                    success : true,
+                                    message : 'User is anonymous.Please comment your edits.'
+                                });
+                            } else {
+                                res.json({
+                                    success : false,
+                                    message : 'Author not found.'
+                                });
+                            }
+                        } else {
+
+                            var email = {
+                                from: 'Polymath, support@polymath.com',
+                                to: user.email,
+                                subject: 'Suggested Edits',
+                                text: 'Hello '+ user.username + 'Thank you Pankaj Tanwar CEO, Polymath',
+                                html: 'Hello <strong>'+ user.username + '</strong>,<br>You have got some edits from :<strong>' + req.decoded.username + '</strong> on your answer :<br> Question : '+ question.question +'.<br> Your Answer : ' + question.answers[req.body.index].answer + '.<br> Edits : '+ req.body.data +'<br> Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
+                            };
+
+                            client.sendMail(email, function(err, info){
+                                if (err ){
+                                    console.log(err);
+                                }
+                                else {
+                                    console.log('Message sent: ' + info.response);
+                                }
+                            });
+
+
+                            res.json({
+                                success : true,
+                                message : 'Edit has been sent to user.'
+                            });
+                        }
+                    });
                 }
+
             });
-
-
-            res.json({
-                success : true,
-                message : 'Account registered! Please check your E-mail inbox for the activation link.'
-            });
-
         }
     });
 
