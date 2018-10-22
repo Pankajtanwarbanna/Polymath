@@ -1,0 +1,33 @@
+
+<br>
+<div style="border: 2px solid white;margin-top: 10px;border-radius: 10px;">
+    <div style="padding: 15px;">
+
+        <div style="color: white;padding-left: 15px;">
+            <b> {{ readArticle.topic }}? </b>
+        </div>
+        <a href="/tag/{{readArticle.tag}}" style="padding-left: 15px;">
+            <span class="label label-success author">{{ readArticle.tag }}</span>
+        </a>
+        <div class="panel-body">
+            <div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6 class="author">Answered by : <a href="/users/{{ readArticle.author }}">@{{ readArticle.author }}</a></h6>
+                    </div>
+                    <div class="panel-body">
+                        {{ readArticle.content }}
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>

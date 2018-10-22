@@ -224,5 +224,20 @@ angular.module('userServices',[])
         return $http.get('/api/getQuestionsanswered/'+ username);
     };
 
+    // add article
+    userFactory.addArticle = function (articleData) {
+        return $http.post('/api/addArticle', articleData);
+    };
+
+    // get all articles
+    userFactory.getArticles = function () {
+        return $http.get('/api/getArticles');
+    };
+
+    // read article
+    userFactory.readArticle = function (id) {
+        return $http.get('/api/readArticle/'+id);
+    };
+
     return userFactory;
 });

@@ -237,4 +237,73 @@ angular.module('userCtrl',['userServices'])
         });
     };
 
+})
+
+.controller('guideCtrl', function () {
+    console.log('testing guide');
+})
+
+.controller('articleCtrl', function (user) {
+    console.log('Testing articles');
+
+    var app = this;
+    app.articles = false;
+
+    user.getArticles().then(function (data) {
+        console.log(data);
+        if(data.data.success) {
+            app.articles = data.data.articles;
+        } else {
+            app.errorMsg = data.data.message;
+        }
+    });
+
+})
+
+.controller('writeArticleCtrl', function (user) {
+
+    var app = this;
+
+    app.tags = false;
+    app.successMsg = false;
+    app.errorMsg = false;
+
+    user.gettags().then(function (data) {
+        console.log(data);
+        if(data.data.success) {
+            app.tags = data.data.tags;
+        } else {
+            console.log('Tags not found.')
+        }
+    });
+
+    app.addArticle = function (articleData) {
+        user.addArticle(articleData).then(function (data) {
+            console.log(data);
+            if(data.data.success) {
+                app.successMsg = data.data.message;
+            } else {
+                app.errorMsg = data.data.message;
+            }
+        })
+    };
+
+})
+
+.controller('readArticleCtrl', function ($routeParams, user) {
+    console.log('testing');
+    var app = this;
+
+    app.article = false;
+
+    user.readArticle($routeParams.id).then(function (data) {
+        console.log(data);
+        if(data.data.success) {
+            app.topic = data.data.article.topic;
+            app.content = data.data.article.content;
+            app.author = data.data.article.author;
+            app.tag = data.data.article.tag;
+        }
+    });
+
 });

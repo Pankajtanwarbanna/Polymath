@@ -3,6 +3,20 @@ var app = angular.module('userRoutes', ['ngRoute'])
 .config(function ($routeProvider, $locationProvider) {
     $routeProvider
 
+        .when('/guide', {
+            templateUrl : '/app/views/pages/guide.html',
+            controller : 'guideCtrl',
+            controllerAs : 'guide',
+            authenticated : true
+        })
+
+        .when('/articles', {
+            templateUrl : '/app/views/pages/articles.html',
+            controller : 'articleCtrl',
+            controllerAs : 'article',
+            authenticated : true
+        })
+
         .when('/register', {
             templateUrl : '/app/views/users/register.html',
             controller : 'regCtrl',
@@ -184,6 +198,20 @@ var app = angular.module('userRoutes', ['ngRoute'])
             authenticated : true,
             controller : 'questionaskedCtrl',
             controllerAs : 'questionasked'
+        })
+
+        .when('/writeArticle', {
+            templateUrl : 'app/views/articles/writeArticle.html',
+            authenticated : true,
+            controller : 'writeArticleCtrl',
+            controllerAs : 'writeArticle'
+        })
+
+        .when('/article/:id', {
+            templateUrl : 'app/views/articles/article.html',
+            authenticated : true,
+            controller : 'readArticleCtrl',
+            controllerAs : 'readArticle'
         })
 
         .otherwise( { redirectTo : '/'});

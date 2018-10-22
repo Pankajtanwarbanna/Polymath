@@ -1,0 +1,41 @@
+<div ng-show="main.isLoggedIn">
+    <br>
+    <div class="row">
+        <div class="col-sm-3 card" style="padding-top: 30px;">
+            <strong>
+                <i class="fa fa-plus"></i>&nbsp
+                <a style="color: white" href="/writeArticle">
+                    Write Article
+                </a>
+            </strong>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="row card">
+                <strong>
+                    <div style="color: white;" class="text-center">
+                        All Articles
+                    </div>
+                </strong>
+            </div>
+            <div class="row card">
+                <div ng-repeat="article in article.articles" style="border: 2px solid white;margin-top: 10px;border-radius: 10px;">
+                    <div style="padding: 15px;">
+                        <strong>
+                            <a href="/article/{{article._id }}">
+                                <p style="color: white;" class="question"> <b> {{ article.topic }} ? </b> </p>
+                            </a>
+                            <a href="/tag/{{question.tag}}">
+                                <span class="label label-success author">{{ article.tag }}</span>
+                            </a>
+                        </strong>
+                    </div>
+                    <div style="color: white;display: block;padding: 15px;">
+                        <h6 class="author">Asked by : <a style="color: white;" href="/users/{{ article.author }}"> @{{ article.author }}</a></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
