@@ -1,7 +1,5 @@
 # Polymath
-A question answer platform with attractive UI. 
-
-A simple question answer platform using MEAN stack technology.
+A simple Question answer platform + Post your articles + Get your summarised coding performance + Kickstart guide to placements using MEAN stack with attractive UI and some additional features.
 
 ## Built with :
 * Nodejs
