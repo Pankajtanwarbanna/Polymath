@@ -2,6 +2,7 @@ var User = require('../models/user');
 var Question = require('../models/quetionAnswer');
 var Tag = require('../models/tag');
 var Report = require('../models/report');
+var Article = require('../models/article');
 var jwt = require('jsonwebtoken');
 var secret = 'polymath';
 var nodemailer = require('nodemailer');
@@ -2274,6 +2275,112 @@ module.exports = function (router){
 
                 }
             });
+        }
+    });
+
+    // route to add article in database
+    router.post('/addArticle', function (req,res) {
+        console.log(req.body);
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'No user found.'
+            })
+        } else if(!req.body.tag) {
+            res.json({
+                success : false,
+                message : 'Please select tag.'
+            });
+        } else if(!req.body.anonymous) {
+            res.json({
+                success : false,
+                message : 'Please select anonymity!'
+            });
+        } else {
+            var newArticle = new Article();
+
+            newArticle.topic = req.body.topic;
+            newArticle.content = req.body.content;
+            newArticle.tag = req.body.tag;
+
+            if(req.body.anonymous === true) {
+                newArticle.author = 'anonymous';
+            } else {
+                newArticle.author = req.decoded.username;
+            }
+
+            newArticle.save(function (err) {
+                if(err) {
+                    throw err;
+                } else {
+                    res.json({
+                        success : true,
+                        message : 'Article successfully posted.Please wait for admin approval.'
+                    })
+                }
+            })
+
+        }
+
+    });
+
+    // router to get all articles
+    router.get('/getArticles', function (req, res) {
+
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+
+            Article.find({ approved: true }, function (err, articles) {
+                if(err) {
+                    throw err;
+                }
+
+                if(!articles) {
+                    res.json({
+                        success : false,
+                        message : 'No article found.'
+                    });
+                } else {
+                    res.json({
+                        success : true,
+                        articles : articles
+                    })
+                }
+            })
+        }
+
+    });
+
+    // route to get article
+    router.get('/readArticle/:id', function (req, res) {
+
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+            Article.findOne({ _id : req.params.id }, function (err, article) {
+                if(err) {
+                    throw err;
+                }
+
+                if(!article) {
+                    res.json({
+                        success : false,
+                        message : 'No article found.'
+                    });
+                } else {
+                    res.json({
+                        success : true,
+                        article : article
+                    });
+                }
+            })
         }
     });
 
