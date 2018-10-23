@@ -2413,6 +2413,46 @@ module.exports = function (router){
         }
     });
 
+    // router to approve article by admin
+    router.put('/approveArticle/:id', function (req,res) {
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+            Article.findOne({ _id : req.params.id }, function (err, article) {
+                if(err) {
+                    throw err;
+                }
+
+                if(!article) {
+                    res.json({
+                        success : false,
+                        message : 'No article found.'
+                    });
+                } else {
+                    article.approved = true;
+
+                    article.save(function (err) {
+                        if(err) {
+                            res.json({
+                                success : false,
+                                message : 'Error while saving article.'
+                            });
+                        } else {
+                            res.json({
+                                success : true,
+                                messsage : 'Article approved.'
+                            });
+                        }
+                    })
+                }
+            })
+        }
+
+    });
+
     return router;
 };
 

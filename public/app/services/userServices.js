@@ -244,5 +244,10 @@ angular.module('userServices',[])
         return $http.get('/api/getUnapprovedArticles');
     };
 
+    // approve article by admin
+    userFactory.approveArticle = function (id) {
+        return $http.put('/api/approveArticle/'+id);
+    };
+
     return userFactory;
 });

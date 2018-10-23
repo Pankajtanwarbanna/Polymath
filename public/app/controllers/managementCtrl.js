@@ -300,5 +300,12 @@ angular.module('managementController', ['userServices'])
         }
     });
 
+    app.approveArticle = function (id) {
+        console.log(id);
+        user.approveArticle(id).then(function (data) {
+            console.log(data);
+        });
+    };
+
 });
 
