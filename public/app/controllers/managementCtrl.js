@@ -292,18 +292,26 @@ angular.module('managementController', ['userServices'])
     app.articles = false;
     app.errorMsg = false;
 
-    user.getUnapprovedArticles().then(function (data) {
-        if(data.data.success) {
-            app.articles = data.data.articles;
-        } else {
-            app.errorMsg = data.data.message;
-        }
-    });
+    function getArticles () {
+
+        user.getUnapprovedArticles().then(function (data) {
+            if(data.data.success) {
+                app.articles = data.data.articles;
+            } else {
+                app.errorMsg = data.data.message;
+            }
+        });
+
+    }
+
+    getArticles();
+
 
     app.approveArticle = function (id) {
-        console.log(id);
         user.approveArticle(id).then(function (data) {
-            console.log(data);
+            if(data.data.success) {
+                getArticles();
+            }
         });
     };
 
