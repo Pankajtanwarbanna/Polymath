@@ -291,7 +291,6 @@ angular.module('userCtrl',['userServices'])
 })
 
 .controller('readArticleCtrl', function ($routeParams, user) {
-    console.log('testing');
     var app = this;
 
     app.article = false;
@@ -303,6 +302,9 @@ angular.module('userCtrl',['userServices'])
             app.content = data.data.article.content;
             app.author = data.data.article.author;
             app.tag = data.data.article.tag;
+            app.approved = data.data.article.approved;
+        } else {
+            app.errorMsg = data.data.message;
         }
     });
 

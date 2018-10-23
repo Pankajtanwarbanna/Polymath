@@ -239,5 +239,10 @@ angular.module('userServices',[])
         return $http.get('/api/readArticle/'+id);
     };
 
+    // get un-approved articles for article management
+    userFactory.getUnapprovedArticles = function () {
+        return $http.get('/api/getUnapprovedArticles');
+    };
+
     return userFactory;
 });

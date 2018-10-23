@@ -2384,6 +2384,35 @@ module.exports = function (router){
         }
     });
 
+    // router to get unapproved articles for article management by admin
+    router.get('/getUnapprovedArticles', function (req,res) {
+
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+            Article.find({ approved: false }, function (err, articles) {
+                if(err) {
+                    throw err;
+                }
+
+                if(!articles) {
+                    res.json({
+                        success : false,
+                        message : 'Articles not found.'
+                    });
+                } else {
+                    res.json({
+                        success : true,
+                        articles : articles
+                    });
+                }
+            })
+        }
+    });
+
     return router;
 };
 

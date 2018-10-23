@@ -141,7 +141,8 @@ var app = angular.module('userRoutes', ['ngRoute'])
             templateUrl : 'app/views/admin/questionManagement.html',
             authenticated : true,
             controller : 'questionManagementCtrl',
-            controllerAs : 'questionManagement'
+            controllerAs : 'questionManagement',
+            permission : 'admin'
         })
 
         .when('/savedanswers', {
@@ -155,7 +156,8 @@ var app = angular.module('userRoutes', ['ngRoute'])
             templateUrl : 'app/views/admin/tagmanagement.html',
             authenticated : true,
             controller : 'tagmanagementCtrl',
-            controllerAs : 'tagmanagement'
+            controllerAs : 'tagmanagement',
+            permission : 'admin'
         })
 
         .when('/users/:username/followers', {
@@ -212,6 +214,14 @@ var app = angular.module('userRoutes', ['ngRoute'])
             authenticated : true,
             controller : 'readArticleCtrl',
             controllerAs : 'readArticle'
+        })
+
+        .when('/articleManagement' , {
+            templateUrl : 'app/views/admin/articleManagement.html',
+            authenticated : true,
+            controller : 'articleManagementCtrl',
+            controllerAs : 'articleManagement',
+            permission : 'admin'
         })
 
         .otherwise( { redirectTo : '/'});

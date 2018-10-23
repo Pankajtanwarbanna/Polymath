@@ -1,0 +1,36 @@
+<div class="text-center">
+    <h1>
+        Article management Page
+    </h1>
+</div>
+
+<br>
+<!-- Div to show when questions database is not empty -->
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Articles management</strong>
+    </div>
+
+    <div style="padding:15px;">
+        <div class="panel panel-default" ng-repeat="article in articleManagement.articles">
+            <div class="panel-heading">
+                <a href="/article/{{article._id }}">
+                    <p class="question"> <b> {{ article.topic }} </b> </p>
+                </a>
+                <a href="/tag/{{article.tag}}">
+                    <span class="label label-success author">{{ article.tag }}</span>
+                </a>
+            </div>
+            <div class="panel-footer" style="display: block;">
+                <h6 class="author">Asked by : <a href="/users/{{ article.author }}">@{{ article.author }}</a>   &nbsp; <button type="button" class="btn btn-success" ng-click="articleManagement.approveArticle(article._id);">Approve Article</button> </h6>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row show-hide-message">
+    <div class="alert alert-danger" ng-show="articleManagement.errorMsg">
+        <strong> Oops! </strong> {{ articleManagement.errorMsg  }}
+    </div>
+</div>

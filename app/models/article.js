@@ -29,7 +29,7 @@ var articleSchema = new mongoose.Schema({
     },
     approved : {
         type : String,
-        default : true
+        default : false
     }
 });
 

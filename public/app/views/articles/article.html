@@ -9,6 +9,7 @@
         <a href="/tag/{{readArticle.tag}}" style="padding-left: 15px;">
             <span class="label label-success author">{{ readArticle.tag }}</span>
         </a>
+        <span class="label label-danger author" ng-show="readArticle.approved==='false'">Not Approved Yet</span>
         <div class="panel-body">
             <div>
 

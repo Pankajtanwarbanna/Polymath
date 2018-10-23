@@ -283,5 +283,22 @@ angular.module('managementController', ['userServices'])
         });
     }
 
+})
+
+.controller('articleManagementCtrl', function (user) {
+
+    var app = this;
+
+    app.articles = false;
+    app.errorMsg = false;
+
+    user.getUnapprovedArticles().then(function (data) {
+        if(data.data.success) {
+            app.articles = data.data.articles;
+        } else {
+            app.errorMsg = data.data.message;
+        }
+    });
+
 });
 
