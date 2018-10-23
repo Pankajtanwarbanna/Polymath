@@ -224,6 +224,11 @@ var app = angular.module('userRoutes', ['ngRoute'])
             permission : 'admin'
         })
 
+        .when('/searchUser', {
+            templateUrl : 'app/views/scrapping/searchUser.html',
+            authenticated :true
+        })
+
         .otherwise( { redirectTo : '/'});
 
         $locationProvider.html5Mode({
