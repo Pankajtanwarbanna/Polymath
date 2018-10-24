@@ -244,13 +244,11 @@ angular.module('userCtrl',['userServices'])
 })
 
 .controller('articleCtrl', function (user) {
-    console.log('Testing articles');
 
     var app = this;
     app.articles = false;
 
     user.getArticles().then(function (data) {
-        console.log(data);
         if(data.data.success) {
             app.articles = data.data.articles;
         } else {
@@ -269,7 +267,6 @@ angular.module('userCtrl',['userServices'])
     app.errorMsg = false;
 
     user.gettags().then(function (data) {
-        console.log(data);
         if(data.data.success) {
             app.tags = data.data.tags;
         } else {
@@ -279,7 +276,6 @@ angular.module('userCtrl',['userServices'])
 
     app.addArticle = function (articleData) {
         user.addArticle(articleData).then(function (data) {
-            console.log(data);
             if(data.data.success) {
                 app.successMsg = data.data.message;
             } else {
@@ -296,7 +292,6 @@ angular.module('userCtrl',['userServices'])
     app.article = false;
 
     user.readArticle($routeParams.id).then(function (data) {
-        console.log(data);
         if(data.data.success) {
             app.topic = data.data.article.topic;
             app.content = data.data.article.content;
@@ -308,4 +303,40 @@ angular.module('userCtrl',['userServices'])
         }
     });
 
+})
+
+.controller('searchUserCtrl', function (user,$location) {
+    var app = this;
+
+    app.errorMsg = false;
+
+    app.searchUser = function (userData) {
+        user.searchUser(app.userData).then(function (data) {
+            if(data.data.success) {
+                $location.path('/codeprofile/'+app.userData.username);
+            } else {
+                app.errorMsg = data.data.message;
+            }
+        });
+    };
+})
+
+.controller('codeprofileCtrl', function () {
+    console.log('testing');
+})
+
+.controller('updateCodingHandlesCtrl', function (user, $scope) {
+    var app = this;
+
+    user.getCurrentUser().then(function (data) {
+        if(data.data.success) {
+            $scope.codechef = data.data.user.codinghandle[0].codechef;
+            $scope.codeforces = data.data.user.codinghandle[1].codeforces;
+            $scope.hackerrank = data.data.user.codinghandle[2].hackerrank;
+            $scope.hackerearth = data.data.user.codinghandle[3].hackerearth;
+            $scope.github = data.data.user.codinghandle[4].github;
+        } else {
+            console.log('Error in getting current User.');
+        }
+    });
 });

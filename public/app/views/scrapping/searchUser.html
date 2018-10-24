@@ -6,10 +6,16 @@
 </div>
 <br>
 <div>
-    <form>
+    <form ng-submit="searchUser.searchUser(userData)">
         <label> Enter Username : </label>
-        <input class="form-control" type="text" placeholder="Enter Username" required>
+        <input class="form-control" type="text" placeholder="Enter Username" ng-model="searchUser.userData.username" required>
         <br>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
+    <br>
+    <div class="row show-hide-message">
+        <div class="alert alert-danger" ng-show="searchUser.errorMsg">
+            <strong> Oops! </strong> {{ searchUser.errorMsg  }} Please enter correct user.
+        </div>
+    </div>
 </div>

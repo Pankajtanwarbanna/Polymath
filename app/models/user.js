@@ -97,6 +97,23 @@ var userSchema = new mongoose.Schema({
             type : String,
             unique : true
         }
+    }],
+    codinghandle : [{
+        codechef : {
+            type : String,
+        },
+        codeforces : {
+            type : String,
+        },
+        hackerrank : {
+            type : String,
+        },
+        hackerearth : {
+            type : String,
+        },
+        github : {
+            type : String,
+        }
     }]
 });
 

@@ -226,7 +226,23 @@ var app = angular.module('userRoutes', ['ngRoute'])
 
         .when('/searchUser', {
             templateUrl : 'app/views/scrapping/searchUser.html',
-            authenticated :true
+            authenticated :true,
+            controller : 'searchUserCtrl',
+            controllerAs : 'searchUser'
+        })
+
+        .when('/codeprofile/:username', {
+            templateUrl : 'app/views/scrapping/codeprofile.html',
+            authenticated : true,
+            controller : 'codeprofileCtrl',
+            controllerAs : 'codeprofile'
+        })
+
+        .when('/updateCodingHandles', {
+            templateUrl : 'app/views/scrapping/updateCodingHandles.html',
+            authenticated : true,
+            controller : 'updateCodingHandlesCtrl',
+            controllerAs : 'updateCodingHandles'
         })
 
         .otherwise( { redirectTo : '/'});

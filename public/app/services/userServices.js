@@ -249,5 +249,15 @@ angular.module('userServices',[])
         return $http.put('/api/approveArticle/'+id);
     };
 
+    // search user for coding profile
+    userFactory.searchUser = function (userData) {
+        return $http.post('/api/searchUser',userData);
+    };
+
+    // route to get current user
+    userFactory.getCurrentUser = function () {
+        return $http.get('/api/getCurrentUser');
+    };
+
     return userFactory;
 });

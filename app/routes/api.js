@@ -2421,36 +2421,100 @@ module.exports = function (router){
                 message : 'User not found.'
             });
         } else {
-            Article.findOne({ _id : req.params.id }, function (err, article) {
-                if(err) {
+            Article.findOne({_id: req.params.id}, function (err, article) {
+                if (err) {
                     throw err;
                 }
 
-                if(!article) {
+                if (!article) {
                     res.json({
-                        success : false,
-                        message : 'No article found.'
+                        success: false,
+                        message: 'No article found.'
                     });
                 } else {
                     article.approved = true;
 
                     article.save(function (err) {
-                        if(err) {
+                        if (err) {
                             res.json({
-                                success : false,
-                                message : 'Error while saving article.'
+                                success: false,
+                                message: 'Error while saving article.'
                             });
                         } else {
                             res.json({
-                                success : true,
-                                messsage : 'Article approved.'
+                                success: true,
+                                messsage: 'Article approved.'
                             });
                         }
                     })
                 }
             })
         }
+    });
 
+    // router to search user for coding profile
+    router.post('/searchUser', function (req, res) {
+
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User is not logged  in.'
+            });
+        } else if(!req.body.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+
+            User.findOne({ username : req.body.username }, function (err,user) {
+                if(err) {
+                    throw err;
+                }
+
+                if(!user) {
+                    res.json({
+                        success : false,
+                        message : 'User not found.'
+                    });
+                } else {
+                    res.json({
+                        success : true,
+                        message : 'User found.'
+                    });
+                }
+
+            });
+        }
+    });
+
+    // route to get current user
+    router.get('/getCurrentUser', function (req,res) {
+
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+            User.findOne({ username : req.decoded.username }, function (err, user) {
+                if(err) {
+                    throw err;
+                }
+
+                if(!user) {
+                    res.json({
+                        success : false,
+                        message : 'User not found.'
+                    });
+                } else {
+                    res.json({
+                        success : true,
+                        user : user
+                    });
+                }
+            });
+        }
     });
 
     return router;
