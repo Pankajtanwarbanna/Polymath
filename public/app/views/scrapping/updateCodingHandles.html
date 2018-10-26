@@ -1,4 +1,16 @@
 <br>
+<div class="row show-hide-message">
+    <div class="alert alert-success" ng-show="updateCodingHandles.successMsg">
+        <strong> Success! </strong> {{ updateCodingHandles.successMsg  }}
+    </div>
+</div>
+
+<div class="row show-hide-message">
+    <div class="alert alert-danger" ng-show="updateCodingHandles.errorMsg">
+        <strong> Oops! </strong> {{ updateCodingHandles.errorMsg  }}
+    </div>
+</div>
+<br>
 <div class="text-center">
     <h1> Update Coding Handles</h1>
 </div>
@@ -28,7 +40,7 @@
     </div>
 
     <div class="col-sm-4">
-        <form>
+        <form ng-submit="updateCodingHandles.updateCode(codechef,codeforces,hackerrank,hackerearth,github);">
             <input type="text" class="form-control" ng-model="codechef">
             <br>
             <input type="text" class="form-control" ng-model="codeforces">

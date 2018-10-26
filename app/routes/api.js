@@ -2517,6 +2517,56 @@ module.exports = function (router){
         }
     });
 
+    // route to update coding handle in database
+    router.put('/updateCode', function (req,res) {
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+            console.log(req.body);
+            User.findOne({ username : req.decoded.username }, function(err, user) {
+                if(err) {
+                    throw err;
+                }
+
+                if(!user) {
+                    res.json({
+                        success : false,
+                        message : 'User not found.'
+                    });
+                } else {
+
+                    console.log(user.codinghandle);
+
+                    console.log(user.codinghandle[0].codechef);
+                    user.codinghandle[0].codechef = req.body.codechef;
+                    user.codinghandle[1].codeforces = req.body.codeforces;
+                    user.codinghandle[2].hackerrank = req.body.hackerrank;
+                    user.codinghandle[3].hackerearth = req.body.hackerearth;
+                    user.codinghandle[4].github = req.body.github;
+
+                    console.log(user.codinghandle);
+
+                    user.save(function (err) {
+                        if(err) {
+                            res.json({
+                                success : false,
+                                message : 'Error while saving code profiles.'
+                            });
+                        } else {
+                            res.json({
+                                success : true,
+                                message : 'Coding handles successfully updated.'
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
+
     return router;
 };
 

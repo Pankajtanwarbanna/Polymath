@@ -259,5 +259,10 @@ angular.module('userServices',[])
         return $http.get('/api/getCurrentUser');
     };
 
+    // route to update coding handle usernames in database
+    userFactory.updateCode = function (codeObj) {
+        return $http.put('/api/updateCode', codeObj);
+    };
+
     return userFactory;
 });

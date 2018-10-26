@@ -325,7 +325,7 @@ angular.module('userCtrl',['userServices'])
     console.log('testing');
 })
 
-.controller('updateCodingHandlesCtrl', function (user, $scope) {
+.controller('updateCodingHandlesCtrl', function (user, $scope,$timeout) {
     var app = this;
 
     user.getCurrentUser().then(function (data) {
@@ -339,4 +339,28 @@ angular.module('userCtrl',['userServices'])
             console.log('Error in getting current User.');
         }
     });
+
+    app.updateCode = function (codechef,codeforces,hackerrank,hackerearth,github) {
+
+        var codeObj = {};
+        codeObj.codechef = codechef;
+        codeObj.codeforces = codeforces;
+        codeObj.hackerearth = hackerearth;
+        codeObj.hackerrank = hackerrank;
+        codeObj.github = github;
+
+        console.log(codeObj);
+        user.updateCode(codeObj).then(function (data) {
+            console.log(data);
+            if(data.data.success) {
+                app.successMsg = data.data.message;
+                $timeout(function () {
+                    app.successMsg = '';
+                }, 2000);
+            } else {
+                app.errorMsg = data.data.message;
+            }
+        });
+
+    }
 });
