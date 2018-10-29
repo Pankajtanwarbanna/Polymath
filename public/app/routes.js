@@ -245,6 +245,13 @@ var app = angular.module('userRoutes', ['ngRoute'])
             controllerAs : 'updateCodingHandles'
         })
 
+        .when('/chat', {
+            templateUrl : 'app/views/chat/chat.html',
+            authenticated : true,
+            controller : 'chatCtrl',
+            controllerAs : 'chat'
+        })
+
         .otherwise( { redirectTo : '/'});
 
         $locationProvider.html5Mode({

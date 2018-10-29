@@ -363,4 +363,11 @@ angular.module('userCtrl',['userServices'])
         });
 
     }
+})
+
+// User chat controller
+.controller('chatCtrl', function () {
+
+    console.log('testing chat controller');
+
 });

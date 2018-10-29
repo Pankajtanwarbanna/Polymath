@@ -183,3 +183,13 @@ p {
     font-size: 17px;
     margin-top: 12px;
 }
+.input-div {
+    position: fixed;
+    bottom: 40px;
+    width: 100%;
+}
+.message-div {
+    height: 400px;
+    border-radius: 20px;
+    border: 2px solid white;
+}
