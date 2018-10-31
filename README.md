@@ -1,5 +1,5 @@
 # Polymath
-A simple Question answer platform + Post your articles + Get your summarised coding performance + Kickstart guide to placements using MEAN stack with attractive UI and some additional features.
+A simple Question answer platform + Post your articles + Get your summarised coding performance + Live chat room + Kickstart guide to placements using MEAN stack with attractive UI and some additional features.
 
 ## Built with :
 * Nodejs
