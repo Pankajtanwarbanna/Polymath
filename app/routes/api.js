@@ -8,7 +8,7 @@ var secret = 'polymath';
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
 
-module.exports = function (router){
+module.exports = function (router, io){
 
     // Nodemailer-sandgrid stuff
     var options = {
@@ -2525,7 +2525,6 @@ module.exports = function (router){
                 message : 'User not found.'
             });
         } else {
-            console.log(req.body);
             User.findOne({ username : req.decoded.username }, function(err, user) {
                 if(err) {
                     throw err;
@@ -2565,6 +2564,17 @@ module.exports = function (router){
                 }
             });
         }
+    });
+
+    // Route for sending message to chatroom
+    router.post('/sendMsg', function (req, res) {
+
+        var msgObj = {};
+
+        msgObj.msg = req.body.msg;
+        msgObj.username = req.decoded.username;
+        // Emiting message to all other users
+        io.emit('chat message', msgObj);
     });
 
     return router;

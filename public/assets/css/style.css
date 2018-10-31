@@ -190,6 +190,6 @@ p {
 }
 .message-div {
     height: 400px;
-    border-radius: 20px;
-    border: 2px solid white;
+    overflow: auto;
+    overflow-x: hidden ;
 }

@@ -264,5 +264,10 @@ angular.module('userServices',[])
         return $http.put('/api/updateCode', codeObj);
     };
 
+    // testing socket.io
+    userFactory.sendMsg = function (msgData) {
+        return $http.post('/api/sendMsg', msgData);
+    };
+
     return userFactory;
 });

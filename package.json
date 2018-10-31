@@ -19,6 +19,7 @@
     "morgan": "^1.9.0",
     "nodemailer": "^4.6.8",
     "nodemailer-sendgrid-transport": "^0.2.0",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "socket.io": "^2.1.1"
   }
 }

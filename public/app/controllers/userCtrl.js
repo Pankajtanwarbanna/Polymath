@@ -366,8 +366,29 @@ angular.module('userCtrl',['userServices'])
 })
 
 // User chat controller
-.controller('chatCtrl', function () {
+.controller('chatCtrl', function (user, $scope) {
 
-    console.log('testing chat controller');
+    var app = this;
+    // initialize socket.io
+    var socket = io();
 
+    $scope.messages = [];
+
+    socket.on('chat message', function(msgObj){
+        // $apply as messages were getting updated outside of the scope
+        $scope.$apply(function() {
+            $scope.messages.push(msgObj);
+        });
+    });
+
+    var msgDataObj = {};
+
+    app.sendMsg = function (msgData) {
+
+        msgDataObj.msg = app.msgData.msg;
+
+        user.sendMsg(msgDataObj);
+
+        app.msgData.msg = '';
+    };
 });
