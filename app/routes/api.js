@@ -14,7 +14,7 @@ module.exports = function (router, io){
     // Nodemailer-sandgrid stuff
     var options = {
         auth: {
-            api_key: 'API_KEY'
+            api_key: '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'
         }
     };
 
@@ -96,7 +96,7 @@ module.exports = function (router, io){
                         to: user.email,
                         subject: 'Activation Link - Polymath Registration',
                         text: 'Hello '+ user.name + 'Thank you for registering with us.Please find the below activation link Activation link Thank you Pankaj Tanwar CEO, Polymath',
-                        html: 'Hello <strong>'+ user.name + '</strong>,<br><br>Thank you for registering with us.Please find the below activation link<br><br><a href="http://localhost:8080/activate/'+ user.temporarytoken+'">Activation link</a><br><br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
+                        html: 'Hello <strong>'+ user.name + '</strong>,<br><br>Thank you for registering with us.Please find the below activation link<br><br><a href="http://localhost:8000/activate/'+ user.temporarytoken+'">Activation link</a><br><br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
                     };
 
                     client.sendMail(email, function(err, info){
@@ -304,7 +304,7 @@ module.exports = function (router, io){
                         to: user.email,
                         subject: 'Activation Link request - Polymath Registration',
                         text: 'Hello '+ user.name + 'You requested for the new activation link.Please find the below activation link Activation link Thank you Pankaj Tanwar CEO, Polymath',
-                        html: 'Hello <strong>'+ user.name + '</strong>,<br><br>You requested for the new activation link.Please find the below activation link<br><br><a href="http://localhost:8080/activate/'+ user.temporarytoken+'">Activation link</a><br><br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
+                        html: 'Hello <strong>'+ user.name + '</strong>,<br><br>You requested for the new activation link.Please find the below activation link<br><br><a href="http://localhost:8000/activate/'+ user.temporarytoken+'">Activation link</a><br><br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
                     };
 
                     client.sendMail(email, function(err, info){
@@ -419,7 +419,7 @@ module.exports = function (router, io){
                                 to: user.email,
                                 subject: 'Forgot Password Request',
                                 text: 'Hello '+ user.name + 'You request for the forgot password.Please find the below link Reset password Thank you Pankaj Tanwar CEO, Polymath',
-                                html: 'Hello <strong>'+ user.name + '</strong>,<br><br>You requested for the forgot password. Please find the below link<br><br><a href="http://localhost:8080/forgotPassword/'+ user.temporarytoken+'">Reset password</a><br><br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
+                                html: 'Hello <strong>'+ user.name + '</strong>,<br><br>You requested for the forgot password. Please find the below link<br><br><a href="http://localhost:8000/forgotPassword/'+ user.temporarytoken+'">Reset password</a><br><br>Thank you<br>Pankaj Tanwar<br>CEO, Polymath'
                             };
 
                             client.sendMail(email, function(err, info){
@@ -2610,8 +2610,57 @@ module.exports = function (router, io){
                 }
             });
         }
+    });
 
+    // route to get guide data according to user
+    router.get('/getGuideDataWithLevel', function (req, res) {
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
 
+            User.findOne({ username : req.decoded.username}, function (err, user) {
+                if(err) {
+                    throw err;
+                }
+
+                if(!user) {
+                    res.json({
+                        success : false,
+                        message : 'User not found.'
+                    });
+                } else {
+
+                    // get user level - user.lavel
+                    console.log(user.level);
+
+                    Guide.find({ level : user.level }, function (err, data) {
+
+                        if(err) {
+                            res.json({
+                                success : false,
+                                message : 'Error while getting guide data.'
+                            });
+                        }
+
+                        if(!data) {
+                            res.json({
+                                success : false,
+                                message : 'Data not found.'
+                            });
+                        } else {
+                            res.json({
+                                success : true,
+                                data : data
+                            });
+                        }
+                    });
+
+                }
+            })
+        }
     });
 
     return router;

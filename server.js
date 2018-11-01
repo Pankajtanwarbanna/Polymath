@@ -8,11 +8,9 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
-
 // socket io chat
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
 var router = express.Router();
 var appRoutes = require('./app/routes/api')(router,io);
 

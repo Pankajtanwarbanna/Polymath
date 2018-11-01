@@ -20,7 +20,7 @@
         </a>
         <button ng-show="usersprofile.sameuser" ng-click="main.logout();" type="button" class="btn btn-danger">Logout</button>
         <a href="/updateCodingHandles">
-            <button type="button" class="btn btn-primary">Update Coding Handles</button>
+            <button type="button" ng-show="usersprofile.sameuser" class="btn btn-primary">Update Coding Handles</button>
         </a>
     </div>
 </div>

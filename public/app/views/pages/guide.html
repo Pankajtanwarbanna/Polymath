@@ -4,3 +4,30 @@
     </h1>
     <p><i>Let's check where you stand !</i></p>
 </div>
+
+<br>
+<div class="row">
+    <div class="col-sm-4 guide-div" ng-repeat="problem in guide.guideData">
+        <div class="panel-group">
+            <div class="panel panel-info">
+                <div class="panel-heading">{{ problem.heading }} </div>
+                <div class="panel-body" style="height: 250px;">
+                    <span class="label label-info author">{{ problem.tag }}</span>
+                    <span class="label label-primary author"> Level : {{ problem.level }}</span>
+                    <br>
+                    <br>
+                    {{ problem.content }}
+                </div>
+                <div class="panel-footer">
+                    <a href="{{problem.link}}" target="_blank">
+                        <button class="btn btn-success">Solve Now</button>
+                    </a>
+                    <div class="checkbox" style="border: 1px solid green;width:110px;border-radius: 10px">
+                        <label style="font-size: 15px;color: black;"><input type="checkbox" value="">Solved</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

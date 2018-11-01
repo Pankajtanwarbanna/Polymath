@@ -239,9 +239,20 @@ angular.module('userCtrl',['userServices'])
 
 })
 
-.controller('guideCtrl', function () {
+.controller('guideCtrl', function (user, $http) {
 
-    console.log('guide page ctrl')
+    console.log('guide page ctrl');
+
+    var app = this;
+
+    $http.get('/api/getGuideDataWithLevel').then(function (data) {
+        console.log(data);
+        if(data.data.success) {
+            app.guideData = data.data.data;
+        } else {
+            app.errorMsg = data.data.message;
+        }
+    });
 
 })
 

@@ -114,7 +114,12 @@ var userSchema = new mongoose.Schema({
         github : {
             type : String,
         }
-    }]
+    }],
+    level : {
+        type : Number,
+        required : true,
+        default: 0
+    },
 });
 
 userSchema.pre('save', function (next) {
