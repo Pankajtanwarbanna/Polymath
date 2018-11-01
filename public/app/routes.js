@@ -252,6 +252,13 @@ var app = angular.module('userRoutes', ['ngRoute'])
             controllerAs : 'chat'
         })
 
+        .when('/guideManagement', {
+            templateUrl : 'app/views/admin/guideManagement.html',
+            authenticated : true,
+            controller : 'guideManagementCtrl',
+            controllerAs : 'guideManagement'
+        })
+
         .otherwise( { redirectTo : '/'});
 
         $locationProvider.html5Mode({

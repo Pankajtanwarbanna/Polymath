@@ -315,5 +315,35 @@ angular.module('managementController', ['userServices'])
         });
     };
 
+})
+
+.controller('guideManagementCtrl', function (user, $timeout) {
+    //console.log('guide management');
+
+    var app = this;
+
+    app.addGuideData = function (guideData) {
+
+        //console.log(guideData);
+
+        user.addGuideData(guideData).then(function (data) {
+            //console.log(data);
+            if(data.data.success) {
+                app.successMsg = data.data.message;
+                $timeout(function () {
+                    app.successMsg = '';
+                    guideData.heading = '';
+                    guideData.content = '';
+                    guideData.level = '';
+                    guideData.link = '';
+                    guideData.tag = '';
+                }, 2000);
+            } else {
+                app.errorMsg = data.data.message;
+            }
+        });
+    }
+
+
 });
 

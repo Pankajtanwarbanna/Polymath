@@ -269,5 +269,10 @@ angular.module('userServices',[])
         return $http.post('/api/sendMsg', msgData);
     };
 
+    // service to add data to guide database
+    userFactory.addGuideData = function (guideData) {
+        return $http.post('/api/addGuideData', guideData);
+    };
+
     return userFactory;
 });

@@ -1,0 +1,53 @@
+<div class="text-center">
+    <h1>
+        Guide Management
+    </h1>
+</div>
+<br>
+<div style="padding-bottom: 50px;">
+    <form ng-submit="guideManagement.addGuideData(guideData);">
+        <label>Problem Heading:</label>
+        <input type="text" class="form-control" name="newproblem" ng-model="guideData.heading" required>
+        <br>
+        <label>Problem Content :</label>
+        <textarea class="form-control" rows="6" cols="50" ng-model="guideData.content" required></textarea>
+        <br>
+        <label>Problem Level :</label>
+        <input type="number" class="form-control" name="newquestion" ng-model="guideData.level" required>
+        <br>
+        <div class="form-group">
+            <label>Select Tag : </label>
+            <select ng-model="guideData.tag" style="background-color: transparent;padding: 5px;margin-left: 5px;" required>
+                <option value="easy">
+                    Easy
+                </option>
+                <option value="medium">
+                    Medium
+                </option>
+                <option value="hard">
+                    Hard
+                </option>
+            </select>
+        </div>
+        <br>
+        <label>Problem Link :</label>
+        <input type="text" class="form-control" ng-model="guideData.link" required>
+        <br>
+        <button class="btn btn-primary" type="submit"> Submit Problem </button>
+    </form>
+    <br>
+    <br>
+
+    <div class="row show-hide-message">
+        <div class="alert alert-success" ng-show="guideManagement.successMsg">
+            <strong> Success! </strong> {{ guideManagement.successMsg  }}
+        </div>
+    </div>
+
+    <div class="row show-hide-message">
+        <div class="alert alert-danger" ng-show="guideManagement.errorMsg">
+            <strong> Oops! </strong> {{ guideManagement.errorMsg  }}
+        </div>
+    </div>
+</div>
+

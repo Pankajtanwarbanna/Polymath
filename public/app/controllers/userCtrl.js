@@ -240,7 +240,9 @@ angular.module('userCtrl',['userServices'])
 })
 
 .controller('guideCtrl', function () {
-    console.log('testing guide');
+
+    console.log('guide page ctrl')
+
 })
 
 .controller('articleCtrl', function (user) {

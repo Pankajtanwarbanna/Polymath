@@ -3,6 +3,7 @@ var Question = require('../models/quetionAnswer');
 var Tag = require('../models/tag');
 var Report = require('../models/report');
 var Article = require('../models/article');
+var Guide = require('../models/guide');
 var jwt = require('jsonwebtoken');
 var secret = 'polymath';
 var nodemailer = require('nodemailer');
@@ -2569,12 +2570,48 @@ module.exports = function (router, io){
     // Route for sending message to chatroom
     router.post('/sendMsg', function (req, res) {
 
-        var msgObj = {};
-
+        let msgObj = {};
         msgObj.msg = req.body.msg;
         msgObj.username = req.decoded.username;
         // Emiting message to all other users
         io.emit('chat message', msgObj);
+    });
+
+    // add data to guide database
+    router.post('/addGuideData', function (req,res) {
+
+        // console.log(req.body);
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+
+            var problem = new Guide();
+
+            problem.heading = req.body.heading;
+            problem.content = req.body.content;
+            problem.level = req.body.level;
+            problem.tag = req.body.tag;
+            problem.link = req.body.link;
+
+            problem.save(function(err) {
+                if(err) {
+                    res.json({
+                        success : false,
+                        message : 'Error while saving data.Please try again later.'
+                    });
+                } else {
+                    res.json({
+                        success : true,
+                        message : 'Problem successfully updated.'
+                    })
+                }
+            });
+        }
+
+
     });
 
     return router;
