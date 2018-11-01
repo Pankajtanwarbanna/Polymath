@@ -14,7 +14,7 @@ module.exports = function (router, io){
     // Nodemailer-sandgrid stuff
     var options = {
         auth: {
-            api_key: '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'
+            api_key: 'API_KEY'
         }
     };
 
@@ -2666,6 +2666,8 @@ module.exports = function (router, io){
     // route to update level
     router.put('/solvedAll', function (req, res) {
 
+        console.log(req.body);
+
         if(!req.decoded.username) {
             res.json({
                 success : false,
@@ -2683,7 +2685,7 @@ module.exports = function (router, io){
                         message : 'User not found.'
                     });
                 } else {
-                    user.level = user.level+1;
+                    user.level = user.level+req.body.solve - 1;
 
                     user.save(function (err) {
                         if(err) {

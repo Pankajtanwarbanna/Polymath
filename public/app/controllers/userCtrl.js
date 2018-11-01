@@ -261,8 +261,9 @@ angular.module('userCtrl',['userServices'])
 
     getData();
 
-    app.solvedAll = function () {
-        user.solvedAll().then(function (data) {
+    app.solvedProblem = function (problemData) {
+        console.log(problemData);
+        user.solvedProblem(problemData).then(function (data) {
             if(data.data.success) {
                 console.log(data.data.success);
                 getData();

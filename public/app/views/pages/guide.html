@@ -21,15 +21,26 @@
                     <a href="{{problem.link}}" target="_blank">
                         <button class="btn btn-success">Solve Now</button>
                     </a>
-                    <div class="checkbox" style="border: 1px solid green;width:110px;border-radius: 10px">
-                        <label style="font-size: 15px;color: black;"><input type="checkbox" value="">Solved</label>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="text-center">
-        <button class="btn btn-primary" ng-click="guide.solvedAll();">Solved All Questions</button>
+        <form ng-submit="guide.solvedProblem(problemData);">
+            <select ng-model="problemData.solve" style="background-color: transparent;padding: 5px;margin-left: 5px;" required>
+                <option value=1>
+                    1
+                </option>
+                <option value=2>
+                    2
+                </option>
+                <option value=3>
+                    3
+                </option>
+            </select>
+            <button class="btn btn-primary" type="submit">Solved {{problemData.solve }} Questions </button>
+        </form>
+
     </div>
 </div>
 

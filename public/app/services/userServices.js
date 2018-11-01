@@ -275,8 +275,8 @@ angular.module('userServices',[])
     };
 
     // service to update level
-    userFactory.solvedAll = function () {
-        return $http.put('/api/solvedAll');
+    userFactory.solvedProblem = function (problemData) {
+        return $http.put('/api/solvedAll', problemData);
     };
 
     return userFactory;
