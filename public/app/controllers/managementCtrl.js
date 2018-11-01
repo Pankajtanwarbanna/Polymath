@@ -295,6 +295,7 @@ angular.module('managementController', ['userServices'])
     function getArticles () {
 
         user.getUnapprovedArticles().then(function (data) {
+            //console.log(data);
             if(data.data.success) {
                 app.articles = data.data.articles;
             } else {

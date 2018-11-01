@@ -1,6 +1,5 @@
 # Polymath
-A simple Question answer platform + Post your articles + Get your summarised coding performance + Live chat room + Kickstart guide to placements using MEAN stack with attractive UI and some additional features.
-
+Question answer platform + Share your Interview experiences with juniors + Live chat room + Get your summarised coding performance + Unique guide to placements as according to your level of coding performance using MEAN stack.
 ## Built with :
 * Nodejs
 * ExpressJs

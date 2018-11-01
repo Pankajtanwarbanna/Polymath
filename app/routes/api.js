@@ -2685,7 +2685,7 @@ module.exports = function (router, io){
                         message : 'User not found.'
                     });
                 } else {
-                    user.level = user.level+req.body.solve - 1;
+                    user.level = user.level+req.body.solve;
 
                     user.save(function (err) {
                         if(err) {
