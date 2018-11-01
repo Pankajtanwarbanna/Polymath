@@ -245,14 +245,30 @@ angular.module('userCtrl',['userServices'])
 
     var app = this;
 
-    $http.get('/api/getGuideDataWithLevel').then(function (data) {
-        console.log(data);
-        if(data.data.success) {
-            app.guideData = data.data.data;
-        } else {
-            app.errorMsg = data.data.message;
-        }
-    });
+    function getData() {
+
+        $http.get('/api/getGuideDataWithLevel').then(function (data) {
+            //console.log(data);
+            if(data.data.success) {
+                app.guideData = data.data.data;
+            } else {
+                app.errorMsg = data.data.message;
+            }
+        });
+
+
+    }
+
+    getData();
+
+    app.solvedAll = function () {
+        user.solvedAll().then(function (data) {
+            if(data.data.success) {
+                console.log(data.data.success);
+                getData();
+            }
+        });
+    }
 
 })
 

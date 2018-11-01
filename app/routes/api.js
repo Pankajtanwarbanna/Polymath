@@ -2663,6 +2663,48 @@ module.exports = function (router, io){
         }
     });
 
+    // route to update level
+    router.put('/solvedAll', function (req, res) {
+
+        if(!req.decoded.username) {
+            res.json({
+                success : false,
+                message : 'User not found.'
+            });
+        } else {
+            User.findOne({ username : req.decoded.username }, function (err, user) {
+                if(err) {
+                    throw err;
+                }
+
+                if(!user) {
+                    res.json({
+                        success : false,
+                        message : 'User not found.'
+                    });
+                } else {
+                    user.level = user.level+1;
+
+                    user.save(function (err) {
+                        if(err) {
+                            res.json({
+                                success : false,
+                                message : 'Error while updating level.'
+                            });
+                        } else {
+                            res.json({
+                                success : true,
+                                message : 'Level updated.'
+                            });
+
+                        }
+
+                    })
+                }
+            })
+        }
+    });
+
     return router;
 };
 
