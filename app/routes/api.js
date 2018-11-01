@@ -14,7 +14,7 @@ module.exports = function (router, io){
     // Nodemailer-sandgrid stuff
     var options = {
         auth: {
-            api_key: 'API_KEY'
+            api_key: 'YOUR_API'
         }
     };
 
