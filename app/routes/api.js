@@ -1710,9 +1710,9 @@ module.exports = function (router, io){
     });
 
     // router to delete report
-    router.delete('/report/:id', function (req,res) {
+    router.delete('/deleteReport/:id', function (req,res) {
 
-        console.log(req.params.id);
+        //console.log(req.params.id);
 
         Report.findOneAndRemove({ id :req.params.id }, function (err) {
             if(err) {
@@ -1721,10 +1721,19 @@ module.exports = function (router, io){
                     message : 'Error please try again'
                 });
             } else {
-                res.json({
-                    success : true,
-                    message : 'Deleted successfully.'
-                })
+                Question.findOneAndRemove({ _id :req.params.id }, function (err) {
+                    if(err) {
+                        res.json({
+                            success : false,
+                            message : 'Error please try again'
+                        });
+                    } else {
+                        res.json({
+                            success : true,
+                            message : 'Deleted successfully.'
+                        })
+                    }
+                });
             }
         });
     });

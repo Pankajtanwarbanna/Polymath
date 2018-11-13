@@ -266,9 +266,9 @@ angular.module('questionController', ['userServices'])
 
 
         user.getreport().then(function (data) {
-            console.log(data);
+            //console.log(data);
             if(data.data.success) {
-                console.log('All report requests are here');
+                //console.log('All report requests are here');
                 app.reports  = data.data.reports;
                 console.log(app.reports);
             } else {
@@ -279,12 +279,11 @@ angular.module('questionController', ['userServices'])
 
     }
 
-
     report();
-
 
     app.deleteQuestion = function (id) {
         user.deleteReport(id).then(function (data) {
+            //console.log(data);
             if(data.data.success) {
                 report();
                 console.log('Question deleted successfully.')

@@ -170,7 +170,7 @@ angular.module('userServices',[])
 
     // route to delete a question
     userFactory.deleteReport = function (id) {
-        return $http.delete('/api/report/'+ id);
+        return $http.delete('/api/deleteReport/'+ id);
     };
 
     // user checking following
