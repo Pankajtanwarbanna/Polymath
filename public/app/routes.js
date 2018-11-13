@@ -87,6 +87,14 @@ var app = angular.module('userRoutes', ['ngRoute'])
             permission : 'admin'
         })
 
+        .when('/userManagement', {
+            templateUrl : 'app/views/admin/UserManagement.html',
+            authenticated : true,
+            controller : 'managementCtrl',
+            controllerAs : 'management',
+            permission : 'admin'
+        })
+
         .when('/edit/:id', {
             templateUrl : 'app/views/admin/edit.html',
             authenticated : true,

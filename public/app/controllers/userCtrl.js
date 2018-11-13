@@ -359,6 +359,7 @@ angular.module('userCtrl',['userServices'])
     var app = this;
 
     user.getCurrentUser().then(function (data) {
+        console.log(data);
         if(data.data.success) {
             $scope.codechef = data.data.user.codinghandle[0].codechef;
             $scope.codeforces = data.data.user.codinghandle[1].codeforces;
@@ -372,14 +373,17 @@ angular.module('userCtrl',['userServices'])
 
     app.updateCode = function (codechef,codeforces,hackerrank,hackerearth,github) {
 
+        console.log(codechef);
+        /*
         var codeObj = {};
-        codeObj.codechef = codechef;
-        codeObj.codeforces = codeforces;
-        codeObj.hackerearth = hackerearth;
-        codeObj.hackerrank = hackerrank;
-        codeObj.github = github;
+        codeObj.codechef = app.codechef;
+        codeObj.codeforces = app.codeforces;
+        codeObj.hackerearth = app.hackerearth;
+        codeObj.hackerrank = app.hackerrank;
+        codeObj.github = app.github;
 
         console.log(codeObj);
+        console.log('testing');
         user.updateCode(codeObj).then(function (data) {
             console.log(data);
             if(data.data.success) {
@@ -391,7 +395,7 @@ angular.module('userCtrl',['userServices'])
                 app.errorMsg = data.data.message;
             }
         });
-
+        */
     }
 })
 

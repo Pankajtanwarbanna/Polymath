@@ -193,5 +193,8 @@ p {
     overflow: auto;
     overflow-x: hidden ;
 }
-.guide-div {
+.managementBtn {
+    padding:30px;
+    margin-left: 30px;
+    width: 230px;
 }
