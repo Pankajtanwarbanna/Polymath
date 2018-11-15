@@ -253,8 +253,9 @@ var app = angular.module('userRoutes', ['ngRoute'])
             controllerAs : 'updateCodingHandles'
         })
 
-        .when('/chat', {
-            templateUrl : 'app/views/chat/chat.html',
+
+        .when('/chatroom', {
+            templateUrl : 'app/views/chat/chat-room.html',
             authenticated : true,
             controller : 'chatCtrl',
             controllerAs : 'chat'

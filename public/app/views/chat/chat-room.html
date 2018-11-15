@@ -1,0 +1,37 @@
+<div class="text-center" style="margin-top: 40px;">
+    <h1>
+        Live Chat Room
+    </h1>
+</div>
+
+<div class="chatbox-holder">
+
+    <div class="chatbox group-chat">
+
+        <div class="chat-messages">
+            <div class="message-box-holder" ng-repeat="message in messages">
+                <div class="message-box" ng-show="message.username === main.username">
+                    {{ message.msg }}
+                </div>
+
+                <div class="message-sender" ng-show="message.username != main.username">
+                    <a href="/users/{{message.username}}"><h2><span class="label label-primary" style="padding: 4px;font-size: 12px;">{{ message.username }}</span> </h2></a>
+                </div>
+                <div class="message-box message-partner" ng-show="message.username != main.username">
+                    {{ message.msg }}
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-holder" style="width: 1256px;">
+            <form ng-submit="chat.sendMsg(msgData);">
+                <input class="chat-input" autocomplete="off" placeholder="Enter new message" ng-model="chat.msgData.msg" required>
+                <button type="submit" class="btn btn-success message-send"> Send Message </button>
+            </form>
+        </div>
+
+
+    </div>
+
+
+</div>

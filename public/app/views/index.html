@@ -135,7 +135,7 @@
                             <br>
                             <br>
                             <strong>
-                                <a href="/chat"><button class="btn btn-primary" style="border-radius: 50%;width: 45px;height: 45px;"><i class="fa fa-comments"></i></button></a>
+                                <a href="/chatroom"><button class="btn btn-primary" style="border-radius: 50%;width: 45px;height: 45px;"><i class="fa fa-comments"></i></button></a>
                             </strong>
                         </div>
                         <div class="col-sm-9" ng-show="main.number>0">
@@ -146,7 +146,7 @@
                                     </div>
                                 </strong>
                             </div>
-                            <div class="row card" ng-show="main.number>0">
+                            <div class="row card" ng-show="main.number>0" style="overflow: auto;height:530px;">
                                 <div ng-repeat="question in main.questions" style="border: 2px solid white;margin-top: 10px;border-radius: 10px;">
                                     <div style="padding: 15px;">
                                         <strong>

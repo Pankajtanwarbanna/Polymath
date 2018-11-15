@@ -7,18 +7,17 @@ var Guide = require('../models/guide');
 var jwt = require('jsonwebtoken');
 var secret = 'polymath';
 var nodemailer = require('nodemailer');
-var sgTransport = require('nodemailer-sendgrid-transport');
 
 module.exports = function (router, io){
 
     // Nodemailer-sandgrid stuff
-    var options = {
+    var client = nodemailer.createTransport({
+        service : 'gmail',
         auth: {
-            api_key: 'YOUR_API'
+            user: 'YOUR_MAIL_ID',
+            pass: 'YOUR_PASSWORD'
         }
-    };
-
-    var client = nodemailer.createTransport(sgTransport(options));
+    });
 
     // User register API
     router.post('/register',function (req, res) {
@@ -1072,8 +1071,8 @@ module.exports = function (router, io){
                     message : 'Question not found.'
                 });
             } else {
-                console.log(question);
-                console.log(question.answers);
+                //console.log(question);
+                //console.log(question.answers);
                 if(question.answers.length === 0) {
                     question.totalviews = question.totalviews + 1;
                 } else {
