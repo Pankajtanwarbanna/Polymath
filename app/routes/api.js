@@ -91,7 +91,7 @@ module.exports = function (router, io){
                 } else {
 
                     var email = {
-                        from: 'Polymath Registration, support@polymath.com',
+                        from: '"Polymath Registration", <support@polymath.com>',
                         to: user.email,
                         subject: 'Activation Link - Polymath Registration',
                         text: 'Hello '+ user.name + 'Thank you for registering with us.Please find the below activation link Activation link Thank you Pankaj Tanwar CEO, Polymath',
