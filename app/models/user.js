@@ -120,6 +120,9 @@ var userSchema = new mongoose.Schema({
         required : true,
         default: 0
     },
+    profilepicurl : {
+        type : String
+    }
 });
 
 userSchema.pre('save', function (next) {

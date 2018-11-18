@@ -197,12 +197,14 @@ angular.module('userCtrl',['userServices'])
     followFunction();
 
     user.getProfile($routeParams.username).then(function (data) {
+        console.log(data);
         if(data.data.success) {
             app.username = data.data.user.username;
             app.email = data.data.user.email;
             app.name = data.data.user.name;
             app.permission = data.data.user.permission;
             app.id = data.data.user._id;
+            app.link = data.data.user.profilepicurl;
             // more entries to be add
 
         } else {
@@ -425,4 +427,15 @@ angular.module('userCtrl',['userServices'])
 
         app.msgData.msg = '';
     };
+})
+
+.controller('upateProfilePicCtrl' , function (user) {
+   var app = this;
+
+   app.updateProfilePic = function (URLData) {
+       console.log(app.URLData);
+       user.updateProfilePic(app.URLData).then(function (data) {
+           console.log(data);
+       });
+   }
 });

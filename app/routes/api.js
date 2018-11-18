@@ -2715,6 +2715,39 @@ module.exports = function (router, io){
         }
     });
 
+    // router to update users' profile picture
+    router.put('/updateProfilePic', function (req, res) {
+        console.log(req.body);
+
+        User.findOne( { username : req.decoded.username }, function (err, mainUser) {
+            if(err) {
+                res.json({
+                    success : false,
+                    message : 'Error while getting user.'
+                });
+            } else if(!mainUser) {
+                res.json({
+                    success : false,
+                    message : 'Error while saving data to database.'
+                });
+            } else {
+                console.log(mainUser);
+                mainUser.profilepicurl = req.body.link;
+
+                mainUser.save(function (err) {
+                    if(err) {
+                        throw err;
+                    } else {
+                        res.json({
+                            success : true,
+                            message : 'Profile Picture successfully updated.'
+                        });
+                    }
+                });
+            }
+        });
+    });
+
     return router;
 };
 

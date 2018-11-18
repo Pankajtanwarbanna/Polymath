@@ -279,5 +279,10 @@ angular.module('userServices',[])
         return $http.put('/api/solvedAll', problemData);
     };
 
+    // update profile picture
+    userFactory.updateProfilePic = function (URLData) {
+        return $http.put('/api/updateProfilePic', URLData);
+    };
+
     return userFactory;
 });

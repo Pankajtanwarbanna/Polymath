@@ -268,6 +268,13 @@ var app = angular.module('userRoutes', ['ngRoute'])
             controllerAs : 'guideManagement'
         })
 
+        .when('/updateProfilePic', {
+            templateUrl : 'app/views/users/updateProfilePic.html',
+            authenticated : true,
+            controller : 'upateProfilePicCtrl',
+            controllerAs : 'profilePic'
+        })
+
         .otherwise( { redirectTo : '/'});
 
         $locationProvider.html5Mode({

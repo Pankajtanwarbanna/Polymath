@@ -6,7 +6,7 @@
 
     </div>
     <div class="col-sm-2">
-        <img style="color: white;margin-top: 6px" src="/assets/img/profilepic.svg"></img>
+        <img style="color: white;margin-top: 6px;width:150px;height: 150px;border: 2px solid white;border-radius: 1em;" src="{{usersprofile.link}}"/>
     </div>
     <div class="col-sm-9">
         <h1>{{ usersprofile.name}}</h1>
@@ -21,6 +21,9 @@
         <button ng-show="usersprofile.sameuser" ng-click="main.logout();" type="button" class="btn btn-danger">Logout</button>
         <a href="/updateCodingHandles">
             <button type="button" ng-show="usersprofile.sameuser" class="btn btn-primary">Update Coding Handles</button>
+        </a>
+        <a href="/updateProfilePic">
+            <button type="button" ng-show="usersprofile.sameuser" class="btn btn-warning">Update Profile Picture</button>
         </a>
     </div>
 </div>

@@ -1,0 +1,13 @@
+<br>
+<div class="text-center">
+    <h1>
+        Update Profile Picture
+    </h1>
+</div>
+<br>
+<form ng-submit="profilePic.updateProfilePic(URLData)">
+    <label>Enter Profile Picture URL :</label>
+    <input class="form-control" type="url" ng-model="profilePic.URLData.link" required>
+    <br>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
