@@ -11,3 +11,15 @@
     <br>
     <button type="submit" class="btn btn-primary">Update</button>
 </form>
+<br>
+<br>
+<div class="row show-hide-message">
+    <div class="alert alert-success" ng-show="profilePic.successMsg">
+        <strong> Oops! </strong> {{ profilePic.successMsg  }}
+    </div>
+</div>
+<div class="row show-hide-message">
+    <div class="alert alert-danger" ng-show="profilePic.errorMsg">
+        <strong> Oops! </strong> {{ profilePic.errorMsg  }}
+    </div>
+</div>

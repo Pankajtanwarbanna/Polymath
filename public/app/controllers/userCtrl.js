@@ -429,13 +429,22 @@ angular.module('userCtrl',['userServices'])
     };
 })
 
-.controller('upateProfilePicCtrl' , function (user) {
+.controller('upateProfilePicCtrl' , function (user, $timeout) {
    var app = this;
 
    app.updateProfilePic = function (URLData) {
        console.log(app.URLData);
        user.updateProfilePic(app.URLData).then(function (data) {
            console.log(data);
+           if(data.data.success) {
+               app.successMsg = data.data.message;
+               $timeout(function () {
+                   app.successMsg = '';
+                   app.URLData.link = '';
+               }, 2000);
+           } else {
+               app.errorMsg = data.data.message;
+           }
        });
    }
 });
