@@ -21,7 +21,7 @@ $ sudo apt-get install npm
 ```
 3. Install MongoDB
 ```
-[Follow this link](https://docs.mongodb.com/v3.2/tutorial/install-mongodb-on-ubuntu/)
+https://docs.mongodb.com/v3.2/tutorial/install-mongodb-on-ubuntu/
 ```
 ### Run Software
 
@@ -31,6 +31,10 @@ $ sudo apt-get install npm
 4. nodemon server.js
 
 **Update Your Email and Password in app/routes/api.js file.**
+
+## Please open an issue if
+* You have any suggestion to improve this project
+* You noticed any problem or error
 
 ## Author
 **Pankaj Tanwar**
