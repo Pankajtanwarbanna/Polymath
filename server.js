@@ -26,7 +26,11 @@ mongoose.connect('mongodb://127.0.0.1/polymath',  { useNewUrlParser: true }, fun
         console.log('Successfully connected to database.');
     }
 });
-
+/*
+mongoose.connect(conString, { useNewUrlParser: true }, () => {
+    console.log("DB is connected");
+});
+*/
 app.get('*', function (req,res) {
     res.sendFile(__dirname + '/public/app/views/index.html');
 });

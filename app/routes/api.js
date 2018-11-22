@@ -15,7 +15,7 @@ module.exports = function (router, io){
         service : 'gmail',
         auth: {
             user: 'EMAIL',
-            pass: 'PASSWORD'
+            pass: 'PASS'
         }
     });
 

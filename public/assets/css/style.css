@@ -171,6 +171,7 @@ p {
     color: white;
     font-weight: bold;
     background-color: transparent;
+    border: none;
 }
 /* Profile page CSS */
 .side-menu{
@@ -346,7 +347,6 @@ p {
     text-decoration: none;
     color: rgba(0, 0, 0, 0.5);
 }
-
 .chatbox-min .chat-partner-name, .chatbox-min .chat-group-name {
     padding: 0 0 0 75px;
 }
