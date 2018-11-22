@@ -30,7 +30,7 @@ $ sudo apt-get install npm
 3. npm install
 4. nodemon server.js
 
-** Update your own sendgrid API key in API.js   **
+**Update Your Email and Password in app/routes/api.js file.**
 
 ## Author
 **Pankaj Tanwar**
